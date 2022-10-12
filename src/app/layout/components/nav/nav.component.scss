@@ -1,0 +1,12 @@
+.active{
+  color:#3c5194 !important;
+  font-weight: bolder;
+}
+
+.active::before{
+  content: "\2299";
+  color: #3c5194 !important;
+  font-weight: bolder;
+  padding-right: 2px;
+
+}

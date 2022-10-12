@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col">
+    <h4 class="space-blue-font-color text-uppercase display-6">
+      picture of the day
+    </h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col d-flex flex-column align-items-center">
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <!-- <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onDateClickBack()"
+            [disabled]="this.isLoading"
+          >
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+          </button> -->
+          &nbsp;&nbsp;
+          <input
+            #f
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            [(ngModel)]="model"
+            ngbDatepicker
+            [footerTemplate]="footerTemplate"
+            #d="ngbDatepicker"
+            [maxDate]="today"
+            [minDate]="apodStartdate"
+            (dateSelect)="onDateSelect($event)"
+            [disabled]="this.isLoading"
+          />
+          <button
+            class="btn btn-outline-primary"
+            (click)="d.toggle()"
+            type="button"
+          >
+            <fa-icon [icon]="faCalendar"></fa-icon></button
+          >&nbsp;&nbsp;
+          <!-- <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onDateClickNext()"
+            [disabled]="this.isLoading"
+          >
+            <fa-icon [icon]="faArrowRight"></fa-icon>
+          </button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<ng-template #footerTemplate>
+  <hr class="my-0" />
+  <button
+    class="btn btn-primary btn-sm m-2 float-start"
+    (click)="model = today; d.close()"
+  >
+    Today
+  </button>
+  <button class="btn btn-secondary btn-sm m-2 float-end" (click)="d.close()">
+    Close
+  </button>
+</ng-template>
+
+<ng-container *ngIf="apodResult != null">
+  <div class="row mt-3">
+    <div class="col-12 text-center">
+      <h5>{{ apodResult.title }}</h5>
+    </div>
+    <div
+      class="col-12 d-flex flex-column align-items-center"
+      *ngIf="apodResult.media_type != 'video'; else youtubeCompRef"
+    >
+      <figure class="figure">
+        <a [href]="apodResult.hdurl" target="_blank">
+          <img
+            [src]="apodResult.url"
+            class="figure-img img-fluid rounded"
+            style="max-height: 60vh !important; object-fit: cover"
+            [alt]="apodResult.title"
+          />
+        </a>
+        <figcaption
+          class="figure-caption text-center"
+          *ngIf="apodResult?.copyright != null"
+        >
+          <fa-icon [icon]="faCopyright"></fa-icon>&nbsp;
+          {{ apodResult.copyright }}
+        </figcaption>
+      </figure>
+    </div>
+    <ng-template #youtubeCompRef>
+      <div class="col-12 d-flex flex-column align-items-center">
+        <app-youtube-frame [youtubeURL]="apodResult.url"></app-youtube-frame>
+      </div>
+    </ng-template>
+    <div class="col-12 text-center has-dropcap">
+      {{ apodResult.explanation }}
+    </div>
+  </div>
+</ng-container>

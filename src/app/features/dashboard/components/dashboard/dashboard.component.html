@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col">
+        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
+          Upcoming Launch
+        </h6>
+        <a
+          style="text-decoration: none !important"
+          [routerLink]="['/launches', 'upcoming']"
+          class="float-end fs-6 space-blue-font-color"
+          >More
+          <fa-icon [icon]="faCircleChevronRight"></fa-icon>
+        </a>
+      </div>
+    </div>
+
+    <app-card customHeight="40vh" [imageTitle]="dashboardResult?.upcomingLaunch?.name" [imageURL]="dashboardResult?.upcomingLaunch?.image">
+      <div class="badge bg-danger mb-2" title="Launch Status">
+        {{ dashboardResult?.upcomingLaunch?.launchStatus?.name }}
+      </div>
+      <h5 class="card-title fw-bold mb-2">
+        {{ dashboardResult?.upcomingLaunch?.name }}
+      </h5>
+      <p class="card-subtitle">
+        <fa-icon [icon]="faRocket"></fa-icon>&nbsp;
+        {{ dashboardResult?.upcomingLaunch?.launchDate }}
+      </p>
+      <a
+        [routerLink]="['/launch', dashboardResult?.upcomingLaunch?.slug]"
+        class="stretched-link"
+      ></a>
+    </app-card>
+
+  </div>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col">
+        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
+          Picture of the day
+        </h6>
+        <a
+          style="text-decoration: none !important"
+          [routerLink]="['/picoftheday']"
+          class="float-end fs-6 space-blue-font-color"
+          >More
+          <fa-icon [icon]="faCircleChevronRight"></fa-icon>
+        </a>
+      </div>
+    </div>
+
+    <app-card customHeight="40vh" [imageTitle]="dashboardResult?.apod?.title" [imageURL]="dashboardResult?.apod?.url">
+      <h5 class="card-title fw-bold mb-2">
+        {{ dashboardResult?.apod?.title }}
+      </h5>
+      <span title="CopyRight" *ngIf="dashboardResult?.apod?.copyright != null"
+        ><fa-icon [icon]="faCopyright"></fa-icon>
+        {{ dashboardResult?.apod?.copyright }}</span
+      >
+      <a [routerLink]="['/picoftheday']" class="stretched-link"></a>
+    </app-card>
+  </div>
+</div>

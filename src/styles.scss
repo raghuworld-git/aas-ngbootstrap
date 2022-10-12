@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+// This fontface is mainly used for Website Name
+@font-face {
+  font-family: "Salvar";
+  src: local("Salvar"),
+    url(./assets/fonts/SalvarRegular-gxwoP.ttf) format("truetype");
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.fs-14{
+  font-size: 14px !important;
+}
+
+.space-blue-font-color{
+  color: #3c5194 !important;
+}
+.bg-gray-custom{
+  background-color: #363535;
+}
+
+.txt-marsColor-custom{
+  color: #c1440e;
+}
+
+a.custom-link-hover {
+  text-decoration: none;
+  color: white !important;
+}
+
+a.custom-link-hover:hover {
+  color: yellow !important;
+}
+
+.has-dropcap:first-letter {
+  font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.65;
+  margin: 0.1em 0.1em 0.2em 0;
+}
+
