@@ -1,24 +1,27 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { LaunchesComponent } from "./components/launches/launches.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LaunchDetailComponent } from './components/launch-detail/launch-detail.component';
+import { PreviousLaunchesComponent } from './components/previous-launches/previous-launches.component';
+import { UpcomingLaunchesComponent } from './components/upcoming-launches/upcoming-launches.component';
 
 
 const routes: Routes = [
-    {
-        path: '', component: LaunchesComponent
-    },
-    {
-        path: 'upcoming', component: LaunchesComponent
-    },
-    {
-        path: 'previous', component: LaunchesComponent
-    }
-]
+  {
+    path: 'upcoming',
+    component: UpcomingLaunchesComponent,
+  },
+  {
+    path: 'previous',
+    component: PreviousLaunchesComponent,
+  },
+  {
+    path: ':slug',
+    component: LaunchDetailComponent,
+  },
+];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class LaunchesRoutingModule {
-
-}
+export class LaunchesRoutingModule {}

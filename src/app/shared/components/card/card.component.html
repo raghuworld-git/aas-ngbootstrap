@@ -1,43 +1,33 @@
-<div class="card postion-relative">
+<div
+  class="card postion-relative"
+  *ngIf="imageURL != null; else cardPlaceholder"
+>
   <img
-        [src]="imageURL"
-        class="card-img-top rounded"
-        [alt]="imageTitle"
-        style="object-fit: cover"
-        [ngStyle]="{'height':customHeight}"
-      />
-      <div
-        class="card-img-overlay text-white d-flex flex-column align-items-end h-100 justify-content-end"
-        style="
-          background: linear-gradient(
-            to bottom,
-            hsla(0, 0%, 0%, 0) 50%,
-            hsla(0, 0%, 0%, 0.5)
-          );
-        "
-      >
-      <ng-content>
-
-      </ng-content>
-      </div>
+    [src]="imageURL"
+    class="card-img-top rounded"
+    [alt]="imageTitle"
+    style="object-fit: cover"
+    [ngStyle]="{ height: customHeight }"
+  />
+  <div
+    class="card-img-overlay text-white d-flex flex-column align-items-end h-100 justify-content-end"
+    style="
+      background: linear-gradient(
+        to bottom,
+        hsla(0, 0%, 0%, 0) 50%,
+        hsla(0, 0%, 0%, 0.5)
+      );
+    "
+  >
+    <ng-content> </ng-content>
+  </div>
 </div>
 
-<div class="card postion-relative">
-      <div
-        class="card-img-overlay text-white d-flex flex-column align-items-end h-100 justify-content-end"
-        style="
-          background: linear-gradient(
-            to bottom,
-            hsla(0, 0%, 0%, 0) 50%,
-            hsla(0, 0%, 0%, 0.5)
-          );
-        "
-      >
-      <ng-content>
-
-      </ng-content>
-      </div>
-</div>
-
-
-
+<ng-template #cardPlaceholder>
+  <div class="placeholder-glow">
+    <span
+      class="placeholder rounded col-12"
+      [ngStyle]="{ height: customHeight }"
+    ></span>
+  </div>
+</ng-template>

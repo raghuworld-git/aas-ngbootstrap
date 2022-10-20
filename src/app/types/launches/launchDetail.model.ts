@@ -1,6 +1,6 @@
 import { LaunchStatus } from "./launchStatus.model";
 
-export interface ILaunchDetail {
+export interface LaunchDetail {
   slug: string;
   ismanned: boolean;
   image: string;

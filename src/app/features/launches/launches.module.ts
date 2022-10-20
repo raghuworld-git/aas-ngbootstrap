@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LaunchesComponent } from './components/launches/launches.component';
 import { LaunchDetailComponent } from './components/launch-detail/launch-detail.component';
 import { LaunchesRoutingModule } from './launches-routing.module';
+import { UpcomingLaunchesComponent } from './components/upcoming-launches/upcoming-launches.component';
+import { PreviousLaunchesComponent } from './components/previous-launches/previous-launches.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
   declarations: [
-    LaunchesComponent,
-    LaunchDetailComponent
+    LaunchDetailComponent,
+    UpcomingLaunchesComponent,
+    PreviousLaunchesComponent
   ],
   imports: [
     CommonModule,
+    NgbPaginationModule,
     LaunchesRoutingModule
   ]
 })

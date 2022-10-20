@@ -1,19 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { LaunchService } from '@features/launches/launch.service';
+import { LaunchDetail } from '@models/launches/launchDetail.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-launch-detail',
   templateUrl: './launch-detail.component.html',
-  styleUrls: ['./launch-detail.component.scss']
+  styleUrls: ['./launch-detail.component.scss'],
 })
-export class LaunchDetailComponent implements OnInit {
+export class LaunchDetailComponent implements OnInit, OnDestroy {
+  constructor(
+    private _route: ActivatedRoute,
+    private _launchService: LaunchService
+  ) {}
 
-  constructor(private _route: ActivatedRoute) { }
+  private slug: string | null;
+  private _launchServiceSubs: Subscription;
+
+  lunchInfo: LaunchDetail | null = null;
 
   ngOnInit(): void {
-    this._route.paramMap.subscribe((data) => {
-      console.log(data);
+    this._route.paramMap.subscribe((data: ParamMap) => {
+      this.slug = data.get('slug');
+    });
+
+    this._launchServiceSubs = this._launchService.getLaunchInfo(this.slug!).subscribe({
+      next: (data) => {
+        this.lunchInfo = data;
+      }
     });
   }
 
+  ngOnDestroy(): void {
+    this._launchServiceSubs?.unsubscribe();
+  }
 }

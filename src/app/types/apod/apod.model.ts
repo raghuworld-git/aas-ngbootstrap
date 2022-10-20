@@ -6,4 +6,8 @@ export class APOD {
   title: string;
   url: string;
   media_type: string;
+  anyNext:boolean;
+  anyPrevious:boolean;
+  code:string | null;
+  msg:string | null;
 }

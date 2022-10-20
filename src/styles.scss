@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // This fontface is mainly used for Website Name
 @font-face {
@@ -10,22 +10,28 @@
     url(./assets/fonts/SalvarRegular-gxwoP.ttf) format("truetype");
 }
 
+/**
+VARIABLES
+**/
+
+$space-blue-color-hex: #3c5194 !important;
+
 body {
   font-family: "Rubik", sans-serif;
 }
 
-.fs-14{
+.fs-14 {
   font-size: 14px !important;
 }
 
-.space-blue-font-color{
-  color: #3c5194 !important;
+.space-blue-font-color {
+  color: $space-blue-color-hex;
 }
-.bg-gray-custom{
+.bg-gray-custom {
   background-color: #363535;
 }
 
-.txt-marsColor-custom{
+.txt-marsColor-custom {
   color: #c1440e;
 }
 
@@ -44,5 +50,11 @@ a.custom-link-hover:hover {
   font-size: 4.5rem;
   line-height: 0.65;
   margin: 0.1em 0.1em 0.2em 0;
+  color: $space-blue-color-hex;
 }
 
+.space-blue-btn {
+  background-color: $space-blue-color-hex;
+  border-color: $space-blue-color-hex;
+  color: white;
+}
