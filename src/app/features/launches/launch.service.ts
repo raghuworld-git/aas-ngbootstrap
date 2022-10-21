@@ -23,15 +23,41 @@ export class LaunchService {
       `${this.getlaunchBySlugURL}/${slug}`
     );
   }
-  getUpcomingLaunches(page: number, limit: number): Observable<lldevResult<SimpleLaunch>> {
+  getUpcomingLaunches(
+    page: number,
+    limit: number
+  ): Observable<lldevResult<SimpleLaunch>> {
     return this._httpService.get<lldevResult<SimpleLaunch>>(
       `${this.getUpcominglaunchsURL}/${page}/${limit}`
     );
   }
 
-  getPreviousLaunches(page: number, limit: number): Observable<lldevResult<SimpleLaunch>> {
+  getPreviousLaunches(
+    page: number,
+    limit: number
+  ): Observable<lldevResult<SimpleLaunch>> {
     return this._httpService.get<lldevResult<SimpleLaunch>>(
       `${this.getPreviouslaunchsURL}/${page}/${limit}`
     );
+  }
+
+  getLaunchStatusColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'go':
+      case 'success':
+        return 'success';
+
+      case 'tbc':
+      case 'tbd':
+        return 'primary';
+      case 'failure':
+      case 'partial failure':
+        return 'danger';
+      case 'hold':
+      case 'in flight':
+        return 'warning';
+      default:
+        return 'primary';
+    }
   }
 }

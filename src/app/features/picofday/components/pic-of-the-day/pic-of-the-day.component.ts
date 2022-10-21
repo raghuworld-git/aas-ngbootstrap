@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   NgbCalendar,
   NgbDate,
+  NgbDateParserFormatter,
   NgbDateStruct,
   NgbInputDatepicker,
 } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +24,8 @@ import { PicOfDayService } from '@features/picofday/picofday.service';
 export class PicOfTheDayComponent implements OnInit, OnDestroy {
   constructor(
     private _podService: PicOfDayService,
-    private _calender: NgbCalendar
+    private _ngbCalender: NgbCalendar,
+    private _ngbformatter:NgbDateParserFormatter
   ) {}
 
   private podSubscribe: Subscription | null = null;
@@ -33,24 +35,24 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
 
-  today: NgbDate;
-  model: NgbDate;
+  today: NgbDate | null;
+  model: NgbDate | null;
   isLoading: boolean = false;
 
   apodStartdate: { year: number; month: number; day: number };
   apodResult: APOD | null = null;
 
-  private selectedDate: NgbDate;
+  private selectedDate: NgbDate | null;
 
   ngOnInit(): void {
-    this.today =this.model = this.selectedDate = this._calender.getToday();
+
     this.apodStartdate = this._podService.getMinDateOfAPODRepo();
     this.getAPODData(null);
   }
 
   onDateClickBack() {
-    let resultDate: NgbDate = this._calender.getPrev(this.selectedDate, 'd', 1);
-    if (this._podService.isDateWithinValidRange(resultDate, this.today)) {
+    let resultDate: NgbDate = this._ngbCalender.getPrev(this.selectedDate!, 'd', 1);
+    if (this._podService.isDateWithinValidRange(resultDate, this.today!)) {
       this.getAPODData(
         this._podService.getFormattedDateWithProperZerosByNgbDate(resultDate)
       );
@@ -59,8 +61,8 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
   }
 
   onDateClickNext() {
-    let resultDate: NgbDate = this._calender.getNext(this.selectedDate, 'd', 1);
-    if (this._podService.isDateWithinValidRange(resultDate, this.today)) {
+    let resultDate: NgbDate = this._ngbCalender.getNext(this.selectedDate!, 'd', 1);
+    if (this._podService.isDateWithinValidRange(resultDate, this.today!)) {
       this.getAPODData(
         this._podService.getFormattedDateWithProperZerosByNgbDate(resultDate)
       );
@@ -85,9 +87,12 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
     this.podSubscribe = this._podService.getAPOD(date).subscribe({
       next: (data) => {
         this.apodResult = data;
+        if (date == null) { // If this is the first call, then date varible will be NULL so that API will fetch data for latest date available
+          var currentDateFromServerFormatted = this._ngbformatter.parse(this.apodResult.date);
+          this.today = this.model = this.selectedDate = NgbDate.from(currentDateFromServerFormatted);
+        }
       },
       complete: () => (this.isLoading = false),
     });
   }
-
 }

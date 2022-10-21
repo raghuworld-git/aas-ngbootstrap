@@ -31,7 +31,7 @@
             ngbDatepicker
             [footerTemplate]="footerTemplate"
             #d="ngbDatepicker"
-            [maxDate]="today"
+            [maxDate]="today!"
             [minDate]="apodStartdate"
             (dateSelect)="onDateSelect($event)"
             [disabled]="this.isLoading"

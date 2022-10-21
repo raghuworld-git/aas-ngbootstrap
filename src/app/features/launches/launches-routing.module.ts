@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'upcoming',
     component: UpcomingLaunchesComponent,
   },
+  // {
+  //   path: 'upcoming/:page',
+  //   component: UpcomingLaunchesComponent,
+  // },
   {
     path: 'previous',
     component: PreviousLaunchesComponent,
