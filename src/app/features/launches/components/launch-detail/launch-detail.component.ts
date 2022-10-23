@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
 import { LaunchDetail } from '@models/launches/launchDetail.model';
 import { Subscription } from 'rxjs';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-launch-detail',
@@ -13,12 +14,13 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _route: ActivatedRoute,
     private _launchService: LaunchService
-  ) {}
+  ) { }
 
   private slug: string | null;
   private _launchServiceSubs: Subscription;
 
   lunchInfo: LaunchDetail | null = null;
+  faArrowLeft = faArrowLeft;
 
   ngOnInit(): void {
     this._route.paramMap.subscribe((data: ParamMap) => {

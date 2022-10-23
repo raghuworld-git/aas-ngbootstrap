@@ -1,1 +1,18 @@
+<a
+  routerLink="/dashboard"
+  class="space-blue-font-color"
+  style="font-size: 20px; text-decoration: none !important"
+>
+  <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
+>
+
 <h4  class="space-blue-font-color text-uppercase display-6"> {{ lunchInfo?.name }} </h4>
+
+<div class="row">
+    <div class="col-6">
+      <app-card [imageTitle]="lunchInfo?.name" [imageURL]="lunchInfo?.image" [customHeight]='"50vh"'></app-card>
+    </div>
+    <div class="col-6 d-flex flex-column" style="height: 50vh !important;">
+        
+    </div>
+</div>
