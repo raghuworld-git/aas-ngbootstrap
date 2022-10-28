@@ -44,16 +44,12 @@
         >
           {{ launchItem?.launchStatus?.name }}
         </span>
-        &nbsp;
-        <span class="badge bg-primary">
-          {{ launchItem?.ismanned ? "Manned" : "Un-manned" }}
-        </span>
       </div>
       <h5 class="card-title fw-bold mb-2">
         {{ launchItem?.name }}
       </h5>
       <p class="card-subtitle">
-        <fa-icon [icon]="faRocket"></fa-icon>&nbsp;
+        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
         {{ launchItem?.launchDate }}
       </p>
       <a

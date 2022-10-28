@@ -1,1 +1,37 @@
-<h4  class="space-blue-font-color text-uppercase display-6"> {{ lunchInfo?.name }} </h4>
+<h4 class="space-blue-font-color text-uppercase display-6">
+  {{ launchInfo?.name }}
+</h4>
+
+<div class="row">
+  <div class="col-md-6 mt-3">
+    <app-card
+      [imageTitle]="launchInfo?.name"
+      [imageURL]="launchInfo?.image"
+      [customHeight]="'50vh'"
+    ></app-card>
+  </div>
+  <div class="col-md-6 d-flex flex-column mt-3">
+    <app-simple-card [customHeight]="'50vh'">
+      <div class="row">
+        <div class="col-12 d-flex flex-column align-items-center">
+          <h3>T- 00 d : 14 h : 41 m: 56 s</h3>
+        </div>
+      </div>
+      <div>
+        <span [title]="launchInfo?.status?.description" [ngClass]="['bg-'+this._launchService.getLaunchStatusColor(launchInfo?.status?.abbrev!),'badge']"> {{ launchInfo?.status?.name }}  </span>
+      </div>
+      <div>
+        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
+        {{ launchInfo?.launchDate }}
+      </div>
+      <div>
+        <fa-icon [icon]="faLocationDot"></fa-icon>&nbsp;&nbsp;{{
+          launchInfo?.pad?.location?.name
+        }}
+      </div>
+      <div>
+        Agency : &nbsp; &nbsp; {{ launchInfo?.launch_service_provider?.name }}
+      </div>
+    </app-simple-card>
+  </div>
+</div>
