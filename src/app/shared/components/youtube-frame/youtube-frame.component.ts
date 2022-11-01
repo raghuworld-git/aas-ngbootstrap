@@ -8,7 +8,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class YoutubeFrameComponent implements OnInit {
 
-  @Input() youtubeURL:string;
+  @Input() youtubeURL?:string;
+  @Input() customHeight: string = "40vh";
 
   safeSrc! : SafeResourceUrl;
 
@@ -17,7 +18,7 @@ export class YoutubeFrameComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeURL);
+    this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/juloL5WeLrc?rel=0");
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
-import { faArrowLeft, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ export class PreviousLaunchesComponent implements OnInit {
   currentPage:number=1;
   totalLaunchRecords:number=0;
 
-  faRocket = faRocket;
+  faCalendarDay = faCalendarDay;
   faArrowLeft= faArrowLeft;
 
   ngOnInit(): void {
