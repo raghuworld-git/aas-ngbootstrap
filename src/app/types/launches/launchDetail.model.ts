@@ -8,24 +8,24 @@ import { Rocket } from "./rocket.model";
 import { VidURL } from "./videoURL.model";
 
 export interface LaunchDetail {
-  slug: string;
-  ismanned: boolean;
-  name:string,
-    image:string,
-    status : LaunchStatus,
-    statusColor:string,
-    updates: LaunchUpdates[],
-    net:string,
-    launch_service_provider:LaunchServiceProvider,
-    rocket: Rocket,
-    mission:Mission | null,
-    customCrewMembers : Astronaut[],
-    pad:LaunchPad,
-    vidURLs:VidURL[],
-    vidURLCustom : string | null,
-    failreason:string | null,
-    holdreason:string | null,
-    isLaunchCompleted:boolean,
-    launchDate:string
+  slug: string,
+  ismanned: boolean,
+  name: string,
+  image: string,
+  status: LaunchStatus,
+  statusColor: string,
+  updates: LaunchUpdates[],
+  net: string,
+  launch_service_provider: LaunchServiceProvider,
+  rocket: Rocket,
+  mission: Mission | null,
+  customCrewMembers: Astronaut[],
+  pad: LaunchPad,
+  vidURLs: VidURL[],
+  vidURLCustom: string | null,
+  failreason: string | null,
+  holdreason: string | null,
+  isLaunchCompleted: boolean,
+  launchDate: string
 
 }

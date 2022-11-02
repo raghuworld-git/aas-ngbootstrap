@@ -1,6 +1,6 @@
 
 <a routerLink="/dashboard" class="space-blue-font-color" style="font-size: 20px;text-decoration: none !important;"> <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a>
-<div class="row">
+<div class="row mt-2">
   <div class="col">
     <h4 class="space-blue-font-color text-uppercase display-6">
       picture of the day
@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row mt-2">
   <div class="col d-flex flex-column align-items-center">
     <form class="row row-cols-sm-auto">
       <div class="col-12">
@@ -70,36 +70,36 @@
       <div class="col-12 text-center">
         <h5>{{ apodResult.title }}</h5>
       </div>
-      <div class="col-12 text-center has-dropcap">
-        {{ apodResult.explanation }}
-      </div>
       <div
-        class="col-12 d-flex flex-column align-items-center mt-2"
-        *ngIf="apodResult.media_type != 'video'; else youtubeCompRef"
-      >
-        <figure class="figure">
-          <a [href]="apodResult.hdurl" target="_blank">
-            <img
-              [src]="apodResult.url"
-              class="figure-img img-fluid rounded"
-              style="max-height: 60vh !important; object-fit: cover"
-              [alt]="apodResult.title"
-            />
-          </a>
-          <figcaption
-            class="figure-caption text-center"
-            *ngIf="apodResult?.copyright != null"
-          >
-            <fa-icon [icon]="faCopyright"></fa-icon>&nbsp;
-            {{ apodResult.copyright }}
-          </figcaption>
-        </figure>
+      class="col-12 d-flex flex-column align-items-center mt-2"
+      *ngIf="apodResult.media_type != 'video'; else youtubeCompRef"
+    >
+      <figure class="figure">
+        <a [href]="apodResult.hdurl" target="_blank">
+          <img
+            [src]="apodResult.url"
+            class="figure-img img-fluid rounded"
+            style="max-height: 60vh !important; object-fit: cover"
+            [alt]="apodResult.title"
+          />
+        </a>
+        <figcaption
+          class="figure-caption text-center"
+          *ngIf="apodResult?.copyright != null"
+        >
+          <fa-icon [icon]="faCopyright"></fa-icon>&nbsp;
+          {{ apodResult.copyright }}
+        </figcaption>
+      </figure>
+    </div>
+    <ng-template #youtubeCompRef>
+      <div class="col-12 d-flex flex-column align-items-center mt-2">
+        <app-youtube-frame [customHeight]="'50vh'" [youtubeURL]="apodResult.url"></app-youtube-frame>
       </div>
-      <ng-template #youtubeCompRef>
-        <div class="col-12 d-flex flex-column align-items-center mt-3">
-          <app-youtube-frame [youtubeURL]="apodResult.url"></app-youtube-frame>
-        </div>
-      </ng-template>
+    </ng-template>
+      <div class="col-12 text-center has-dropcap mt-2 mb-3">
+        {{ apodResult.explanation }}
+      </div>     
     </div>
   </ng-template>
 </ng-container>

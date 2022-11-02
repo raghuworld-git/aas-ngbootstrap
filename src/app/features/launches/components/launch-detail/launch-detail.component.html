@@ -6,13 +6,70 @@
   <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
 >
 
-<h4  class="space-blue-font-color text-uppercase display-6"> {{ lunchInfo?.name }} </h4>
+<h4 class="space-blue-font-color text-uppercase mt-2">
+  {{ launchInfo?.name }}
+</h4>
 
 <div class="row">
-    <div class="col-lg-6">
-      <app-card [imageTitle]="lunchInfo?.name" [imageURL]="lunchInfo?.image" [customHeight]='"50vh"'></app-card>
+  <div class="col-lg-6 mt-2">
+    <app-card
+      [imageTitle]="launchInfo?.name"
+      [imageURL]="launchInfo?.image"
+      [customHeight]="'50vh'"
+    ></app-card>
+  </div>
+  <div class="col-lg-6 mt-2">
+    <app-simple-card [customHeight]="'50vh'" [wantFlex]='true'>
+      <p class="h4">T- 00 d : 18 h : 13 m: 02 s</p>
+
+      <span
+        class="mt-2 badge"
+        [ngClass]="[
+          'bg-' +
+            _launchService.getLaunchStatusColor(launchInfo?.status?.abbrev!)
+        ]"
+        title="Launch Status"
+      >
+        {{ launchInfo?.status?.name }}
+      </span>
+      <span class="mt-2">
+        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
+        {{ launchInfo?.launchDate }}
+      </span>
+      <span class="mt-2">
+        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> &nbsp;
+        {{ launchInfo?.pad?.name }} , {{ launchInfo?.pad?.location?.name }}
+      </span>
+      <span class="my-2"
+        >Agency : &nbsp; {{ launchInfo?.launch_service_provider?.name }}</span
+      >
+    </app-simple-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 mt-3">
+    <div class="row">
+      <div class="col">
+        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
+          Rocket : {{ launchInfo?.rocket?.configuration?.name }}
+        </h6>        
+      </div>
     </div>
-    <div class="col-lg-6 d-flex flex-column" style="height: 50vh !important;">
-        
+    <app-simple-card [customHeight]="'auto'">
+      {{ launchInfo?.rocket?.configuration?.description }}
+    </app-simple-card>
+  </div>
+  <div class="col-lg-6 mt-3">
+    <div class="row">
+      <div class="col">
+        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
+          Mission : {{ launchInfo?.mission?.name }}
+        </h6>        
+      </div>
     </div>
+    <app-simple-card [customHeight]="'auto'">
+      {{ launchInfo?.mission?.description }}
+    </app-simple-card>
+  </div>
 </div>

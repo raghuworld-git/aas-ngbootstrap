@@ -6,9 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./simple-card.component.scss'],
 })
 export class SimpleCardComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   @Input() customHeight: string = '40vh';
+  @Input() wantFlex: true | false = false;
 }

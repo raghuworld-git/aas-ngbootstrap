@@ -19,12 +19,13 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
   upcomingLaunchesList: lldevResult<SimpleLaunch> = { count: 0, results: [] };
   currentPage:number=1;
   totalLaunchRecords:number=0;
+  perpageItemsSize:number=6;
 
   faCalendarDay = faCalendarDay;
   faArrowLeft= faArrowLeft;
 
   ngOnInit(): void {
-    this.getUpcomingLaunches(0, 9,true);
+    this.getUpcomingLaunches(0, this.perpageItemsSize,true);
   }
 
   ngOnDestroy(): void {
@@ -32,7 +33,7 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
   }
 
   onPagination(event: number) {
-    this.getUpcomingLaunches(event - 1, 9);
+    this.getUpcomingLaunches(event - 1, this.perpageItemsSize);
     //this._router.navigate([event],{relativeTo:this._route});
   }
 

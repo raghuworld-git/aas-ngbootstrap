@@ -20,12 +20,13 @@ export class PreviousLaunchesComponent implements OnInit {
   previousLaunchesList: lldevResult<SimpleLaunch> = { count: 0, results: [] };
   currentPage:number=1;
   totalLaunchRecords:number=0;
+  perpageItemsSize:number=6;
 
   faCalendarDay = faCalendarDay;
   faArrowLeft= faArrowLeft;
 
   ngOnInit(): void {
-    this.getPreviousLaunches(0, 9,true);
+    this.getPreviousLaunches(0, this.perpageItemsSize,true);
   }
 
   ngOnDestroy(): void {
@@ -33,7 +34,7 @@ export class PreviousLaunchesComponent implements OnInit {
   }
 
   onPagination(event: number) {
-    this.getPreviousLaunches(event - 1, 9);
+    this.getPreviousLaunches(event - 1, this.perpageItemsSize);
     //this._router.navigate([event],{relativeTo:this._route});
   }
 
