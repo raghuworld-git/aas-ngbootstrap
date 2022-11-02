@@ -6,16 +6,16 @@
   <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
 >
 
-<h4 class="space-blue-font-color text-uppercase display-6">
+<h4 class="space-blue-font-color text-uppercase display-6 mt-2">
   Previous Launches
 </h4>
 
-<div class="row">
+<div class="row mt-2">
   <div class="col d-flex flex-column align-items-center">
     <ngb-pagination
       [collectionSize]="totalLaunchRecords"
       [pageSize]="9"
-      [maxSize]="5"
+      [maxSize]="4"
       aria-label="Default pagination"
       [boundaryLinks]="true"
       (pageChange)="onPagination($event)"
@@ -27,7 +27,7 @@
 
 <div class="row d-flex justify-content-center">
   <div
-    class="col-md-4 col-12 mt-2 g-1"
+    class="col-lg-4 col-12 mt-2 g-1"
     *ngFor="let launchItem of previousLaunchesList.results"
   >
     <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
@@ -45,10 +45,10 @@
           {{ launchItem?.launchStatus?.name }}
         </span>        
       </div>
-      <h5 class="card-title fw-bold mb-2">
+      <span class="h6 d-inline-block text-truncate" style="max-width: 300px;">
         {{ launchItem?.name }}
-      </h5>
-      <p class="card-subtitle">
+      </span>     
+      <p class="small">
         <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
         {{ launchItem?.launchDate }}
       </p>
@@ -60,12 +60,12 @@
   </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-3">
   <div class="col d-flex flex-column align-items-center">
     <ngb-pagination
       [collectionSize]="totalLaunchRecords"
       [pageSize]="9"
-      [maxSize]="5"
+      [maxSize]="4"
       aria-label="Default pagination"
       [boundaryLinks]="true"
       (pageChange)="onPagination($event)"
