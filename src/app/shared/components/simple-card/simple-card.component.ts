@@ -11,5 +11,6 @@ export class SimpleCardComponent implements OnInit {
   ngOnInit(): void { }
 
   @Input() customHeight: string = '40vh';
-  @Input() wantFlex: true | false = false;
+  @Input() wantFlex: boolean = false;
+  @Input() wantHeader: boolean = false;
 }

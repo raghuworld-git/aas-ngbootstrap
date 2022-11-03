@@ -1,12 +1,12 @@
 <a
   routerLink="/dashboard"
-  class="space-blue-font-color"
-  style="font-size: 20px; text-decoration: none !important"
+  class="btn space-blue-btn btn-sm"
+  style="text-decoration: none !important"
 >
   <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
 >
 
-<h4 class="space-blue-font-color text-uppercase mt-2">
+<h4 class="space-blue-font-color text-uppercase mt-3">
   {{ launchInfo?.name }}
 </h4>
 
@@ -48,29 +48,17 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-6 mt-3">
-    <div class="row">
-      <div class="col">
-        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
-          Rocket : {{ launchInfo?.rocket?.configuration?.name }}
-        </h6>
-      </div>
-    </div>
-    <app-simple-card [customHeight]="'auto'">
+  <div class="col-lg-6 mt-2">   
+    <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
+      <span header>  Rocket : {{ launchInfo?.rocket?.configuration?.name }} </span>
       <p>
         {{ launchInfo?.rocket?.configuration?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.rocket?.configuration?.description)">More</a>       
       </p>     
     </app-simple-card>
   </div>
-  <div class="col-lg-6 mt-3">
-    <div class="row">
-      <div class="col">
-        <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
-          Mission : {{ launchInfo?.mission?.name }}
-        </h6>
-      </div>
-    </div>
-    <app-simple-card [customHeight]="'auto'">
+  <div class="col-lg-6 mt-2">   
+    <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
+      <span header>  Mission : {{ launchInfo?.mission?.name }} </span>
       <p>
       {{ launchInfo?.mission?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.mission?.description)">More</a>  
       </p>
