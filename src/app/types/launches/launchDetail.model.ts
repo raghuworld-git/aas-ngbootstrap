@@ -18,7 +18,7 @@ export interface LaunchDetail {
   net: string,
   launch_service_provider: LaunchServiceProvider,
   rocket: Rocket,
-  mission: Mission | null,
+  mission: Mission,
   customCrewMembers: Astronaut[],
   pad: LaunchPad,
   vidURLs: VidURL[],

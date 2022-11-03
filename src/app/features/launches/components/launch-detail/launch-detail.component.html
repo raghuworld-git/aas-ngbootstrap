@@ -19,7 +19,7 @@
     ></app-card>
   </div>
   <div class="col-lg-6 mt-2">
-    <app-simple-card [customHeight]="'50vh'" [wantFlex]='true'>
+    <app-simple-card [customHeight]="'50vh'" [wantFlex]="true">
       <p class="h4">T- 00 d : 18 h : 13 m: 02 s</p>
 
       <span
@@ -53,11 +53,13 @@
       <div class="col">
         <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
           Rocket : {{ launchInfo?.rocket?.configuration?.name }}
-        </h6>        
+        </h6>
       </div>
     </div>
     <app-simple-card [customHeight]="'auto'">
-      {{ launchInfo?.rocket?.configuration?.description }}
+      <p>
+        {{ launchInfo?.rocket?.configuration?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.rocket?.configuration?.description)">More</a>       
+      </p>     
     </app-simple-card>
   </div>
   <div class="col-lg-6 mt-3">
@@ -65,11 +67,13 @@
       <div class="col">
         <h6 class="float-start space-blue-font-color fw-bold text-uppercase">
           Mission : {{ launchInfo?.mission?.name }}
-        </h6>        
+        </h6>
       </div>
     </div>
     <app-simple-card [customHeight]="'auto'">
-      {{ launchInfo?.mission?.description }}
+      <p>
+      {{ launchInfo?.mission?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.mission?.description)">More</a>  
+      </p>
     </app-simple-card>
   </div>
 </div>

@@ -3,7 +3,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
 import { LaunchDetail } from '@models/launches/launchDetail.model';
 import { Subscription } from 'rxjs';
-import { faArrowLeft,faMapMarkerAlt,faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faMapMarkerAlt, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SimpleModalComponent } from '@shared/components/simple-modal/simple-modal.component';
 
 @Component({
   selector: 'app-launch-detail',
@@ -13,6 +15,7 @@ import { faArrowLeft,faMapMarkerAlt,faCalendarDay } from '@fortawesome/free-soli
 export class LaunchDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _route: ActivatedRoute,
+    private modalService: NgbModal,
     public _launchService: LaunchService
   ) { }
 
@@ -22,7 +25,7 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   launchInfo: LaunchDetail | null = null;
   faArrowLeft = faArrowLeft;
   faMapMarkerAlt = faMapMarkerAlt;
-  faCalendarDay=faCalendarDay;
+  faCalendarDay = faCalendarDay;
 
   ngOnInit(): void {
     this._route.paramMap.subscribe((data: ParamMap) => {
@@ -38,5 +41,11 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._launchServiceSubs?.unsubscribe();
+  }
+
+
+  open(text: string | undefined) {
+    const modalRef = this.modalService.open(SimpleModalComponent, { scrollable: true, centered: true });
+    modalRef.componentInstance.text = text;    
   }
 }

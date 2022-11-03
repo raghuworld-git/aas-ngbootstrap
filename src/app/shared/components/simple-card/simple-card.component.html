@@ -1,10 +1,9 @@
 <div class="card">
   <div
-    class="card-body"
+    class="card-body text-center"
     [ngStyle]="{ height: customHeight }"
     [ngClass]="{
-      'd-flex flex-column align-items-center justify-content-center': wantFlex,
-      'text-center': wantFlex==false
+      'd-flex flex-column align-items-center justify-content-center': wantFlex     
     }"
   >
     <ng-content></ng-content>

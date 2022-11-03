@@ -3,14 +3,15 @@ import { CustomHttpService } from '@core/services/customHttp.service';
 import { LaunchDetail } from '@models/launches/launchDetail.model';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LaunchService {
-  constructor(private _httpService: CustomHttpService) {}
+  constructor(private _httpService: CustomHttpService) { }
 
+  private noDataAvailable:string ='No Data available';
   private launchBaseURL: string = 'Launches';
   private getlaunchBySlugURL: string = `${this.launchBaseURL}/GetlaunchBySlug`;
 
@@ -21,8 +22,17 @@ export class LaunchService {
   getLaunchInfo(slug: string): Observable<LaunchDetail> {
     return this._httpService.get<LaunchDetail>(
       `${this.getlaunchBySlugURL}/${slug}`
-    );
+    ).pipe(map(data => {     
+      if(!this.hasData(data.rocket?.configuration?.description)){
+        data.rocket.configuration.description = this.noDataAvailable;
+      }
+      if(!this.hasData(data.mission?.description)){
+        data.mission.description = this.noDataAvailable;
+      }
+      return data;
+    }));
   }
+
   getUpcomingLaunches(
     page: number,
     limit: number
@@ -42,7 +52,7 @@ export class LaunchService {
   }
 
   getLaunchStatusColor(status: string): string {
-    switch (status.toLowerCase()) {
+    switch (status?.toLowerCase()) {
       case 'go':
       case 'success':
         return 'success';
@@ -59,5 +69,12 @@ export class LaunchService {
       default:
         return 'primary';
     }
+  }
+  
+  private hasData(data:any):boolean{
+      if(data == undefined || data == null || data ==""){
+        return false;
+      }
+      return true;
   }
 }
