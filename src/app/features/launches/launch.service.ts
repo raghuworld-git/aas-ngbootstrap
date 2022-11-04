@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomHttpService } from '@core/services/customHttp.service';
 import { LaunchDetail } from '@models/launches/launchDetail.model';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
@@ -9,9 +10,9 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class LaunchService {
-  constructor(private _httpService: CustomHttpService) { }
+  constructor(private _httpService: CustomHttpService,private _router:Router) { }
 
-  private noDataAvailable:string ='No Data available';
+  private noDataAvailable: string = 'No Data available';
   private launchBaseURL: string = 'Launches';
   private getlaunchBySlugURL: string = `${this.launchBaseURL}/GetlaunchBySlug`;
 
@@ -22,11 +23,11 @@ export class LaunchService {
   getLaunchInfo(slug: string): Observable<LaunchDetail> {
     return this._httpService.get<LaunchDetail>(
       `${this.getlaunchBySlugURL}/${slug}`
-    ).pipe(map(data => {     
-      if(!this.hasData(data.rocket?.configuration?.description)){
+    ).pipe(map(data => {
+      if (!this.hasData(data.rocket?.configuration?.description)) {
         data.rocket.configuration.description = this.noDataAvailable;
       }
-      if(!this.hasData(data.mission?.description)){
+      if (!this.hasData(data.mission?.description)) {
         data.mission.description = this.noDataAvailable;
       }
       return data;
@@ -40,6 +41,15 @@ export class LaunchService {
     return this._httpService.get<lldevResult<SimpleLaunch>>(
       `${this.getUpcominglaunchsURL}/${page}/${limit}`
     );
+  }
+
+  getLaunchesUsingRouting(page: number, isUpcoming: boolean = true) {
+    if(isUpcoming){
+      this._router.navigate(['/launches/upcoming', page-1]);
+    }    
+    else{
+      this._router.navigate(['/launches/previous', page-1]);
+    }
   }
 
   getPreviousLaunches(
@@ -70,11 +80,11 @@ export class LaunchService {
         return 'primary';
     }
   }
-  
-  private hasData(data:any):boolean{
-      if(data == undefined || data == null || data ==""){
-        return false;
-      }
-      return true;
+
+  private hasData(data: any): boolean {
+    if (data == undefined || data == null || data == "") {
+      return false;
+    }
+    return true;
   }
 }

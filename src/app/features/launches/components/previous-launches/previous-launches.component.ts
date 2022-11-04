@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
 import { faArrowLeft, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class PreviousLaunchesComponent implements OnInit {
 
-  constructor(public _launchService: LaunchService, private _route: ActivatedRoute,private _router:Router) {}
+  constructor(public _launchService: LaunchService, private _route: ActivatedRoute) {}
 
   private _launchServiceSub: Subscription | null;
 
@@ -21,12 +21,16 @@ export class PreviousLaunchesComponent implements OnInit {
   currentPage:number=1;
   totalLaunchRecords:number=0;
   perpageItemsSize:number=6;
+  incomingPageChangedByUser:number=0;
 
   faCalendarDay = faCalendarDay;
   faArrowLeft= faArrowLeft;
 
-  ngOnInit(): void {
-    this.getPreviousLaunches(0, this.perpageItemsSize,true);
+  ngOnInit(): void {    
+    this._route.paramMap.subscribe((data: ParamMap) => {
+      this.incomingPageChangedByUser = Number(data.get('page'));
+      this.getPreviousLaunches(this.incomingPageChangedByUser, this.perpageItemsSize, true);
+    });
   }
 
   ngOnDestroy(): void {
@@ -34,8 +38,7 @@ export class PreviousLaunchesComponent implements OnInit {
   }
 
   onPagination(event: number) {
-    this.getPreviousLaunches(event - 1, this.perpageItemsSize);
-    //this._router.navigate([event],{relativeTo:this._route});
+    this._launchService.getLaunchesUsingRouting(event,false);
   }
 
   private getPreviousLaunches(page: number, limit: number,isInitial:boolean=false) {

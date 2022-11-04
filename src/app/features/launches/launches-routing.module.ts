@@ -19,6 +19,10 @@ const routes: Routes = [
     component: PreviousLaunchesComponent,
   },
   {
+    path: 'previous/:page',
+    component: PreviousLaunchesComponent,
+  },
+  {
     path: ':slug',
     component: LaunchDetailComponent,
   },
