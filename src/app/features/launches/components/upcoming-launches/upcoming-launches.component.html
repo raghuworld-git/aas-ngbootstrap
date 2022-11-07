@@ -1,10 +1,16 @@
-<a routerLink="/dashboard"  class="btn space-blue-btn btn-sm" style="text-decoration: none !important;"> <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a>
+<a
+  routerLink="/dashboard"
+  class="btn space-blue-btn btn-sm"
+  style="text-decoration: none !important"
+>
+  <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
+>
 
 <h4 class="space-blue-font-color text-uppercase display-6 mt-3">
   Upcoming Launches
 </h4>
 
-<div class="row mt-2">
+<div class="row mt-2 mb-3">
   <div class="col d-flex flex-column align-items-center">
     <ngb-pagination
       [collectionSize]="totalLaunchRecords"
@@ -14,44 +20,55 @@
       [boundaryLinks]="true"
       (pageChange)="onPagination($event)"
       [(page)]="currentPage"
-    >    
+    >
     </ngb-pagination>
   </div>
 </div>
 
 <div class="row d-flex justify-content-center">
-  <div
-    class="col-md-4 col-12 mt-2 g-1"
-    *ngFor="let launchItem of upcomingLaunchesList.results"
+  <ng-container *ngIf="upcomingLaunchesList.results.length > 0">
+    <div
+      class="col-md-4 col-12 mt-2 g-1"
+      *ngFor="let launchItem of upcomingLaunchesList.results"
+    >
+      <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
+        <div class="mb-2">
+          <span
+            class="badge"
+            [ngClass]="[
+              'bg-' +
+                _launchService.getLaunchStatusColor(
+                  launchItem?.launchStatus?.abbrev!
+                )
+            ]"
+            title="Launch Status"
+          >
+            {{ launchItem?.launchStatus?.name }}
+          </span>
+        </div>
+        <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
+          {{ launchItem?.name }}
+        </span>
+        <p class="small">
+          <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
+          {{ launchItem?.launchDate }}
+        </p>
+        <a
+          [routerLink]="['/launches', launchItem?.slug]"
+          class="stretched-link"
+        ></a>
+      </app-card>
+    </div>
+  </ng-container>
+  <p
+    class="space-blue-font-color text-center"
+    *ngIf="
+      upcomingLaunchesList.results.length == 0 &&
+      upcomingLaunchesList.count >= 0
+    "
   >
-    <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
-      <div class="mb-2">
-        <span
-          class="badge"
-          [ngClass]="[
-            'bg-' +
-              _launchService.getLaunchStatusColor(
-                launchItem?.launchStatus?.abbrev!
-              )
-          ]"
-          title="Launch Status"
-        >
-          {{ launchItem?.launchStatus?.name }}
-        </span>        
-      </div>
-      <span class="h6 d-inline-block text-truncate" style="max-width: 300px;"  >
-        {{ launchItem?.name }}
-      </span>   
-      <p class="small">
-        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
-        {{ launchItem?.launchDate }}
-      </p>
-      <a
-        [routerLink]="['/launches', launchItem?.slug]"
-        class="stretched-link"
-      ></a>
-    </app-card>
-  </div>
+    No data availble
+  </p>
 </div>
 
 <div class="row mt-3 mb-3">

@@ -17,7 +17,7 @@ export class PreviousLaunchesComponent implements OnInit {
 
   private _launchServiceSub: Subscription | null;
 
-  previousLaunchesList: lldevResult<SimpleLaunch> = { count: 0, results: [] };
+  previousLaunchesList: lldevResult<SimpleLaunch> = { count: -1, results: [] };
   currentPage:number=1;
   totalLaunchRecords:number=0;
   perpageItemsSize:number=6;
@@ -27,8 +27,12 @@ export class PreviousLaunchesComponent implements OnInit {
   faArrowLeft= faArrowLeft;
 
   ngOnInit(): void {    
-    this._route.paramMap.subscribe((data: ParamMap) => {
-      this.incomingPageChangedByUser = Number(data.get('page'));
+    this._route.queryParamMap.subscribe((data: ParamMap) => {
+      if(Number(data.get('page'))){
+        this.incomingPageChangedByUser = Number(data.get('page'));
+      }else{
+        this.incomingPageChangedByUser = 0
+      }
       this.getPreviousLaunches(this.incomingPageChangedByUser, this.perpageItemsSize, true);
     });
   }

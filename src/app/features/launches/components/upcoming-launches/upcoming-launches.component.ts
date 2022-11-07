@@ -16,7 +16,7 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
 
   private _launchServiceSub: Subscription | null;
 
-  upcomingLaunchesList: lldevResult<SimpleLaunch> = { count: 0, results: [] };
+  upcomingLaunchesList: lldevResult<SimpleLaunch> = { count: -1, results: [] };
   currentPage: number = 1;
   totalLaunchRecords: number = 0;
   perpageItemsSize: number = 6;
@@ -26,8 +26,13 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
   faArrowLeft = faArrowLeft;
 
   ngOnInit(): void {    
-    this._route.paramMap.subscribe((data: ParamMap) => {
-      this.incomingPageChangedByUser = Number(data.get('page'));
+    this._route.queryParamMap.subscribe((data: ParamMap) => {    
+      debugger;  
+      if(Number(data.get('page'))!=NaN){
+        this.incomingPageChangedByUser = Number(data.get('page'));
+      }else{
+        this.incomingPageChangedByUser = 0
+      }
       this.getUpcomingLaunches(this.incomingPageChangedByUser, this.perpageItemsSize, true);
     });
   }
@@ -46,6 +51,7 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
       .getUpcomingLaunches(page, limit)
       .subscribe((data) => {
         this.upcomingLaunchesList = data;
+        console.log(this.upcomingLaunchesList);
         if (isInitial) {
           this.totalLaunchRecords = this.upcomingLaunchesList.count;
         }

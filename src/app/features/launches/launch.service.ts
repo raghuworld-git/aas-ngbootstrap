@@ -45,10 +45,10 @@ export class LaunchService {
 
   getLaunchesUsingRouting(page: number, isUpcoming: boolean = true) {
     if(isUpcoming){
-      this._router.navigate(['/launches/upcoming', page-1]);
+      this._router.navigate(['/launches/upcoming'],{queryParams:{page:page-1}});
     }    
     else{
-      this._router.navigate(['/launches/previous', page-1]);
+      this._router.navigate(['/launches/previous'],{queryParams:{page:page-1}});
     }
   }
 
