@@ -18,7 +18,7 @@ export class YoutubeFrameComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/juloL5WeLrc?rel=0");
+    this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeURL!);
   }
 
 }

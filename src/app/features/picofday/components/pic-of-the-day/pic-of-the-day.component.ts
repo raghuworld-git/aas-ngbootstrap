@@ -85,7 +85,7 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.apodResult = null;
     this.podSubscribe = this._podService.getAPOD(date).subscribe({
-      next: (data) => {
+      next: (data) => {        
         this.apodResult = data;
         if (date == null) { // If this is the first call, then date varible will be NULL so that API will fetch data for latest date available
           var currentDateFromServerFormatted = this._ngbformatter.parse(this.apodResult.date);
