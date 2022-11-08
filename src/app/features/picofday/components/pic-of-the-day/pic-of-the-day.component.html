@@ -72,7 +72,7 @@
       </div>
       <div
       class="col-12 d-flex flex-column align-items-center mt-2"
-      *ngIf="apodResult.media_type != 'video'; else youtubeCompRef"
+      *ngIf="apodResult.media_type != 'video'; else videoFrameCompRef"
     >
       <figure class="figure">
         <a [href]="apodResult.hdurl" target="_blank">
@@ -92,9 +92,9 @@
         </figcaption>
       </figure>
     </div>
-    <ng-template #youtubeCompRef>
+    <ng-template #videoFrameCompRef>
       <div class="col-12 d-flex flex-column align-items-center mt-2">
-        <app-youtube-frame [customHeight]="'50vh'" [youtubeURL]="apodResult.url"></app-youtube-frame>
+        <app-videoplayer-frame [customHeight]="'50vh'" [youtubeURL]="apodResult.url"></app-videoplayer-frame>>
       </div>
     </ng-template>
       <div class="col-12 text-center has-dropcap mt-2 mb-3">

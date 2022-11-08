@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-youtube-frame',
-  templateUrl: './youtube-frame.component.html',
-  styleUrls: ['./youtube-frame.component.scss']
+  selector: 'app-videoplayer-frame',
+  templateUrl: './videoplayer-frame.component.html',
+  styleUrls: ['./videoplayer-frame.component.scss']
 })
-export class YoutubeFrameComponent implements OnInit {
+export class VideoPlayerFrameComponent implements OnInit {
 
   @Input() youtubeURL?:string;
   @Input() customHeight: string = "40vh";
