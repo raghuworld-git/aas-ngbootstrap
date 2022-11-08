@@ -28,7 +28,7 @@
 <div class="row d-flex justify-content-center">
   <ng-container *ngIf="upcomingLaunchesList.results.length > 0">
     <div
-      class="col-md-4 col-12 mt-2 g-1"
+      class="col-md-6 col-lg-4  col-12 mt-2 g-1"
       *ngFor="let launchItem of upcomingLaunchesList.results"
     >
       <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
