@@ -22,17 +22,10 @@
     <app-simple-card [customHeight]="'50vh'" [wantFlex]="true">
       <p class="h4">T- 00 d : 18 h : 13 m: 02 s</p>
 
-      <app-launch-status [launchStatusColor]="launchStatusColor" [launchStatus]="launchInfo?.status?.name" ></app-launch-status>
-      <!-- <span
-        class="mt-2 badge"
-        [ngClass]="[
-          'bg-' +
-            _launchService.getLaunchStatusColor(launchInfo?.status?.abbrev!)
-        ]"
-        title="Launch Status"
-      >
-        {{ launchInfo?.status?.name }}
-      </span> -->
+      <app-launch-status
+        [launchStatusColor]="launchStatusColor"
+        [launchStatus]="launchInfo?.status?.name"
+      ></app-launch-status>
       <span class="mt-2">
         <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
         {{ launchInfo?.launchDate }}
@@ -47,21 +40,54 @@
     </app-simple-card>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-lg-6 mt-2">   
+<div class="row" *ngIf="launchInfo?.isFailed || launchInfo?.isHold">
+  <div class="col mt-2">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
-      <span header>  Rocket : {{ launchInfo?.rocket?.configuration?.name }} </span>
+      <span header>
+        {{ launchInfo?.isFailed ? "Failure" : "Hold" }} Reason
+      </span>
       <p>
-        {{ launchInfo?.rocket?.configuration?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.rocket?.configuration?.description)">More</a>       
-      </p>     
+        {{
+          launchInfo?.failHoldreason | slice: 0:150
+        }}...
+        <a
+          href="#"
+          onclick="return false;"
+          (click)="open(launchInfo?.failHoldreason!)"
+          >More</a
+        >
+      </p>
     </app-simple-card>
   </div>
-  <div class="col-lg-6 mt-2">   
+</div>
+<div class="row">
+  <div class="col-lg-6 mt-2">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
-      <span header>  Mission : {{ launchInfo?.mission?.name }} </span>
+      <span header> Mission : {{ launchInfo?.mission?.name }} </span>
       <p>
-      {{ launchInfo?.mission?.description | slice:0:150 }}... <a href="#" onclick="return false;"  (click)="open(launchInfo?.mission?.description)">More</a>  
+        {{ launchInfo?.mission?.description | slice: 0:150 }}...
+        <a
+          href="#"
+          onclick="return false;"
+          (click)="open(launchInfo?.mission?.description)"
+          >More</a
+        >
+      </p>
+    </app-simple-card>
+  </div>
+  <div class="col-lg-6 mt-2">
+    <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
+      <span header>
+        Rocket : {{ launchInfo?.rocket?.configuration?.name }}
+      </span>
+      <p>
+        {{ launchInfo?.rocket?.configuration?.description | slice: 0:150 }}...
+        <a
+          href="#"
+          onclick="return false;"
+          (click)="open(launchInfo?.rocket?.configuration?.description)"
+          >More</a
+        >
       </p>
     </app-simple-card>
   </div>

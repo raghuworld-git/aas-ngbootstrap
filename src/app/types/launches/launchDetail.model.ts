@@ -25,6 +25,9 @@ export interface LaunchDetail {
   vidURLCustom: string | null,
   failreason: string | null,
   holdreason: string | null,
+  isFailed:boolean,
+  isHold:boolean,
+  failHoldreason:string | null,
   isLaunchCompleted: boolean,
   launchDate: string
 

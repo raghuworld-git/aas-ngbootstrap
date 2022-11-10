@@ -29,6 +29,18 @@ export class LaunchService {
       }
       if (!this.hasData(data.mission?.description)) {
         data.mission.description = this.noDataAvailable;
+      }     
+      if(['partial failure','failure'].includes(data.status.abbrev.toLowerCase())){
+        data.isFailed = true;
+        data.failHoldreason = data.failreason;
+      }
+      if(data.status.abbrev.toLowerCase()=='hold'){
+        data.isHold = true;
+        data.failHoldreason = data.holdreason;
+      }
+       
+      if (!this.hasData(data.failHoldreason)) {
+        data.failHoldreason = this.noDataAvailable;
       }
       return data;
     }));
