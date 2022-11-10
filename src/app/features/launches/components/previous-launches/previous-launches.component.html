@@ -33,18 +33,7 @@
     >
       <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
         <div class="mb-2">
-          <span
-            class="badge"
-            [ngClass]="[
-              'bg-' +
-                _launchService.getLaunchStatusColor(
-                  launchItem?.launchStatus?.abbrev!
-                )
-            ]"
-            title="Launch Status"
-          >
-            {{ launchItem?.launchStatus?.name }}
-          </span>
+          <app-launch-status [launchStatus]="launchItem?.launchStatus?.name"  [launchStatusColor]="_launchUtilService.getLaunchStatusColor(launchItem?.launchStatus?.abbrev!)"></app-launch-status>
         </div>
         <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
           {{ launchItem?.name }}

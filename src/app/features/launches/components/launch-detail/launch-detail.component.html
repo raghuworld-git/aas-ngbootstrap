@@ -22,7 +22,8 @@
     <app-simple-card [customHeight]="'50vh'" [wantFlex]="true">
       <p class="h4">T- 00 d : 18 h : 13 m: 02 s</p>
 
-      <span
+      <app-launch-status [launchStatusColor]="launchStatusColor" [launchStatus]="launchInfo?.status?.name" ></app-launch-status>
+      <!-- <span
         class="mt-2 badge"
         [ngClass]="[
           'bg-' +
@@ -31,7 +32,7 @@
         title="Launch Status"
       >
         {{ launchInfo?.status?.name }}
-      </span>
+      </span> -->
       <span class="mt-2">
         <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
         {{ launchInfo?.launchDate }}

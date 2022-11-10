@@ -61,25 +61,6 @@ export class LaunchService {
     );
   }
 
-  getLaunchStatusColor(status: string): string {
-    switch (status?.toLowerCase()) {
-      case 'go':
-      case 'success':
-        return 'success';
-
-      case 'tbc':
-      case 'tbd':
-        return 'primary';
-      case 'failure':
-      case 'partial failure':
-        return 'danger';
-      case 'hold':
-      case 'in flight':
-        return 'warning';
-      default:
-        return 'primary';
-    }
-  }
 
   private hasData(data: any): boolean {
     if (data == undefined || data == null || data == "") {

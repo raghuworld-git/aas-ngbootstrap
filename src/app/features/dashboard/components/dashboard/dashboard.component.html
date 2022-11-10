@@ -16,12 +16,13 @@
     </div>
 
     <app-card customHeight="40vh" [imageTitle]="dashboardResult?.upcomingLaunch?.name" [imageURL]="dashboardResult?.upcomingLaunch?.image">
-      <div class="badge bg-danger mb-2" title="Launch Status">
+      <!-- <div class="badge bg-danger mb-2" title="Launch Status">
         {{ dashboardResult?.upcomingLaunch?.launchStatus?.name }}
-      </div>
-      <h5 class="card-title fw-bold mb-2">
+      </div> -->
+      <app-launch-status [launchStatusColor]="launchStatusColor" [launchStatus]="dashboardResult?.upcomingLaunch?.launchStatus?.name"></app-launch-status>
+      <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
         {{ dashboardResult?.upcomingLaunch?.name }}
-      </h5>
+      </span>   
       <p class="card-subtitle">
         <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
         {{ dashboardResult?.upcomingLaunch?.launchDate }}

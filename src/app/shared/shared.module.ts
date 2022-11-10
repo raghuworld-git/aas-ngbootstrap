@@ -5,6 +5,7 @@ import { SimpleCardComponent } from './components/simple-card/simple-card.compon
 import { SimpleModalComponent } from './components/simple-modal/simple-modal.component';
 import { TextTrimDirective } from './directives/text-trim.directive';
 import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videoplayer-frame.component';
+import { LaunchStatusComponent } from './components/launch-status/launch-status.component';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,9 @@ import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videop
     CardComponent,
     SimpleCardComponent,
     SimpleModalComponent,
-    
-    TextTrimDirective
+    LaunchStatusComponent,
+
+    TextTrimDirective,         
   ],
   imports: [
     CommonModule
@@ -23,6 +25,7 @@ import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videop
     CardComponent,
     SimpleCardComponent,
     SimpleModalComponent,
+    LaunchStatusComponent,
 
     TextTrimDirective
   ]

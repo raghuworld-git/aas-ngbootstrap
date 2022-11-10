@@ -4,6 +4,7 @@ import { LaunchService } from '@features/launches/launch.service';
 import { faArrowLeft, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
+import { LaunchUtilService } from '@shared/services/launch-Util.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,7 +13,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./upcoming-launches.component.scss'],
 })
 export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
-  constructor(public _launchService: LaunchService, private _route: ActivatedRoute) { }
+  constructor(
+    private _launchService: LaunchService,
+    public _launchUtilService: LaunchUtilService,
+    private _route: ActivatedRoute
+  ) {}
 
   private _launchServiceSub: Subscription | null;
 
@@ -25,15 +30,18 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
   faCalendarDay = faCalendarDay;
   faArrowLeft = faArrowLeft;
 
-  ngOnInit(): void {    
-    this._route.queryParamMap.subscribe((data: ParamMap) => {    
-      debugger;  
-      if(Number(data.get('page'))!=NaN){
+  ngOnInit(): void {
+    this._route.queryParamMap.subscribe((data: ParamMap) => {      
+      if (Number(data.get('page')) != NaN) {
         this.incomingPageChangedByUser = Number(data.get('page'));
-      }else{
-        this.incomingPageChangedByUser = 0
+      } else {
+        this.incomingPageChangedByUser = 0;
       }
-      this.getUpcomingLaunches(this.incomingPageChangedByUser, this.perpageItemsSize, true);
+      this.getUpcomingLaunches(
+        this.incomingPageChangedByUser,
+        this.perpageItemsSize,
+        true
+      );
     });
   }
 
@@ -42,16 +50,19 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
   }
 
   onPagination(event: number) {
-    // this.getUpcomingLaunches(event - 1, this.perpageItemsSize);   
+    // this.getUpcomingLaunches(event - 1, this.perpageItemsSize);
     this._launchService.getLaunchesUsingRouting(event);
   }
 
-  private getUpcomingLaunches(page: number, limit: number, isInitial: boolean = false) {
+  private getUpcomingLaunches(
+    page: number,
+    limit: number,
+    isInitial: boolean = false
+  ) {
     this._launchServiceSub = this._launchService
       .getUpcomingLaunches(page, limit)
       .subscribe((data) => {
-        this.upcomingLaunchesList = data;
-        console.log(this.upcomingLaunchesList);
+        this.upcomingLaunchesList = data;        
         if (isInitial) {
           this.totalLaunchRecords = this.upcomingLaunchesList.count;
         }

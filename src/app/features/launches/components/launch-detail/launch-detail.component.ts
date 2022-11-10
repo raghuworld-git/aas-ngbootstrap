@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { faArrowLeft, faMapMarkerAlt, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SimpleModalComponent } from '@shared/components/simple-modal/simple-modal.component';
+import { LaunchUtilService } from '@shared/services/launch-Util.service';
 
 @Component({
   selector: 'app-launch-detail',
@@ -16,7 +17,8 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _route: ActivatedRoute,
     private modalService: NgbModal,
-    public _launchService: LaunchService
+    private _launchService: LaunchService,
+    private _launchutilService:LaunchUtilService
   ) { }
 
   private slug: string | null;
@@ -27,6 +29,8 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   faMapMarkerAlt = faMapMarkerAlt;
   faCalendarDay = faCalendarDay;
 
+  launchStatusColor:string;
+
   ngOnInit(): void {
     this._route.paramMap.subscribe((data: ParamMap) => {
       this.slug = data.get('slug');
@@ -35,6 +39,7 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
     this._launchServiceSubs = this._launchService.getLaunchInfo(this.slug!).subscribe({
       next: (data) => {
         this.launchInfo = data;
+        this.launchStatusColor =  this._launchutilService.getLaunchStatusColor(data.status.abbrev);        
       }
     });
   }
