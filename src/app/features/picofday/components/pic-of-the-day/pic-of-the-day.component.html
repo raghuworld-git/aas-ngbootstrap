@@ -1,5 +1,10 @@
-
-<a routerLink="/dashboard"  class="btn space-blue-btn btn-sm" style="text-decoration: none !important;"> <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a>
+<a
+  routerLink="/dashboard"
+  class="btn space-blue-btn btn-sm"
+  style="text-decoration: none !important"
+>
+  <ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
+>
 <div class="row mt-3">
   <div class="col">
     <h4 class="space-blue-font-color text-uppercase display-6">
@@ -7,7 +12,6 @@
     </h4>
   </div>
 </div>
-
 <div class="row mt-2">
   <div class="col d-flex flex-column align-items-center">
     <form class="row row-cols-sm-auto">
@@ -19,7 +23,7 @@
             (click)="onDateClickBack()"
             [disabled]="!this.apodResult?.anyPrevious"
           >
-            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <ng-icon name="bootstrapArrowLeft"></ng-icon>
           </button>
           &nbsp;&nbsp;
           <input
@@ -41,7 +45,7 @@
             (click)="d.toggle()"
             type="button"
           >
-            <fa-icon [icon]="faCalendar"></fa-icon></button
+            <ng-icon name="bootstrapCalendar2Event"></ng-icon></button
           >&nbsp;&nbsp;
           <button
             type="button"
@@ -49,7 +53,7 @@
             (click)="onDateClickNext()"
             [disabled]="!this.apodResult?.anyNext"
           >
-            <fa-icon [icon]="faArrowRight"></fa-icon>
+            <ng-icon name="bootstrapArrowRight"></ng-icon>
           </button>
         </div>
       </div>
@@ -64,42 +68,48 @@
 </ng-template>
 
 <ng-container *ngIf="apodResult != null">
-  <p *ngIf="apodResult.msg;else ifDataExists" class="text-center mt-3"> {{ apodResult.msg }}</p>
+  <p *ngIf="apodResult.msg; else ifDataExists" class="text-center mt-3">
+    {{ apodResult.msg }}
+  </p>
   <ng-template #ifDataExists>
     <div class="row mt-3">
       <div class="col-12 text-center">
         <h5>{{ apodResult.title }}</h5>
       </div>
       <div
-      class="col-12 d-flex flex-column align-items-center mt-2"
-      *ngIf="apodResult.media_type != 'video'; else videoFrameCompRef"
-    >
-      <figure class="figure">
-        <a [href]="apodResult.hdurl" target="_blank">
-          <img
-            [src]="apodResult.url"
-            class="figure-img img-fluid rounded"
-            style="max-height: 60vh !important; object-fit: cover"
-            [alt]="apodResult.title"
-          />
-        </a>
-        <figcaption
-          class="figure-caption text-center"
-          *ngIf="apodResult?.copyright != null"
-        >
-          <fa-icon [icon]="faCopyright"></fa-icon>&nbsp;
-          {{ apodResult.copyright }}
-        </figcaption>
-      </figure>
-    </div>
-    <ng-template #videoFrameCompRef>
-      <div class="col-12 d-flex flex-column align-items-center mt-2">
-        <app-videoplayer-frame [customHeight]="'50vh'" [youtubeURL]="apodResult.url"></app-videoplayer-frame>>
+        class="col-12 d-flex flex-column align-items-center mt-2"
+        *ngIf="apodResult.media_type != 'video'; else videoFrameCompRef"
+      >
+        <figure class="figure">
+          <a [href]="apodResult.hdurl" target="_blank">
+            <img
+              [src]="apodResult.url"
+              class="figure-img img-fluid rounded"
+              style="max-height: 60vh !important; object-fit: cover"
+              [alt]="apodResult.title"
+            />
+          </a>
+          <figcaption
+            class="figure-caption text-center"
+            *ngIf="apodResult?.copyright != null"
+          >
+            <ng-icon name="bootstrapCCircle"></ng-icon> &nbsp;
+            {{ apodResult.copyright }}
+          </figcaption>
+        </figure>
       </div>
-    </ng-template>
+      <ng-template #videoFrameCompRef>
+        <div class="col-12 d-flex flex-column align-items-center mt-2">
+          <app-videoplayer-frame
+            [customHeight]="'50vh'"
+            [youtubeURL]="apodResult.url"
+          ></app-videoplayer-frame
+          >>
+        </div>
+      </ng-template>
       <div class="col-12 text-center has-dropcap mt-2 mb-3">
         {{ apodResult.explanation }}
-      </div>     
+      </div>
     </div>
   </ng-template>
 </ng-container>

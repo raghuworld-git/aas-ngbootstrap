@@ -10,7 +10,7 @@
           [routerLink]="['/launches', 'upcoming']"
           class="float-end fs-6 space-blue-font-color"
           >More
-          <fa-icon [icon]="faCircleChevronRight"></fa-icon>
+          <ng-icon name="bootstrapArrowRight"></ng-icon>
         </a>
       </div>
     </div>
@@ -24,7 +24,7 @@
         {{ dashboardResult?.upcomingLaunch?.name }}
       </span>   
       <p class="card-subtitle">
-        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
+        <ng-icon name="bootstrapCalendar2Event"></ng-icon>&nbsp;
         {{ dashboardResult?.upcomingLaunch?.launchDate }}
       </p>
       <a
@@ -45,7 +45,7 @@
           [routerLink]="['/picoftheday']"
           class="float-end fs-6 space-blue-font-color"
           >More
-          <fa-icon [icon]="faCircleChevronRight"></fa-icon>
+          <ng-icon name="bootstrapArrowRight"></ng-icon>
         </a>
       </div>
     </div>
@@ -55,7 +55,7 @@
         {{ dashboardResult?.apod?.title }}
       </h5>
       <span title="CopyRight" *ngIf="dashboardResult?.apod?.copyright != null"
-        ><fa-icon [icon]="faCopyright"></fa-icon>
+        > <ng-icon name="bootstrapCCircle"></ng-icon>
         {{ dashboardResult?.apod?.copyright }}</span
       >
       <a [routerLink]="['/picoftheday']" class="stretched-link"></a>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
-import { faArrowLeft, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
 import { LaunchUtilService } from '@shared/services/launch-Util.service';
@@ -26,9 +25,6 @@ export class PreviousLaunchesComponent implements OnInit {
   totalLaunchRecords: number = 0;
   perpageItemsSize: number = 6;
   incomingPageChangedByUser: number = 0;
-
-  faCalendarDay = faCalendarDay;
-  faArrowLeft = faArrowLeft;
 
   ngOnInit(): void {
     this._route.queryParamMap.subscribe((data: ParamMap) => {

@@ -37,6 +37,8 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   faVideo = faVideo;
   faVideoSlash = faVideoSlash;
 
+  
+
   launchStatusColor: string;
 
   ngOnInit(): void {

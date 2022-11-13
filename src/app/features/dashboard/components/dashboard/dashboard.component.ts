@@ -1,10 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DashboardService } from '@features/dashboard/dashboard.service';
-import {
-  faCalendarDay,
-  faCircleChevronRight,
-  faCopyright,
-} from '@fortawesome/free-solid-svg-icons';
 import { dashboard } from '@models/dashboard/dashboard.model';
 import { LaunchUtilService } from '@shared/services/launch-Util.service';
 import { Subscription } from 'rxjs';
@@ -18,14 +13,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private _dashboarService: DashboardService,
     private _launchUtilService: LaunchUtilService
-  ) {}
-
-  faCalendarDay = faCalendarDay;
-  faCircleChevronRight = faCircleChevronRight;
-  faCopyright = faCopyright;
+  ) { }
 
   dashboardResult: dashboard | null;
-  launchStatusColor :string;
+  launchStatusColor: string;
 
   private $dashboardservice: Subscription;
 
@@ -34,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .getAllDashboardData()
       .subscribe((data) => {
         this.dashboardResult = data;
-        this.launchStatusColor =  this._launchUtilService.getLaunchStatusColor(data.upcomingLaunch?.launchStatus?.abbrev!);
+        this.launchStatusColor = this._launchUtilService.getLaunchStatusColor(data.upcomingLaunch?.launchStatus?.abbrev!);
       });
   }
 

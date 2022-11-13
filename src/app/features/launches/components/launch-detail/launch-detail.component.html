@@ -3,7 +3,7 @@
   class="btn space-blue-btn btn-sm"
   style="text-decoration: none !important"
 >
-  <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp; Back</a
+<ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
 >
 
 <h4 class="space-blue-font-color text-uppercase mt-3">
@@ -27,17 +27,17 @@
         [launchStatus]="launchInfo?.status?.name"
       ></app-launch-status>
       <span class="mt-2">
-        <fa-icon [icon]="faCalendarDay"></fa-icon>&nbsp;
+        <ng-icon name="bootstrapCalendar2Event"></ng-icon>&nbsp;
         {{ launchInfo?.launchDate }}
       </span>
       <span class="mt-2">
-        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> &nbsp;
+        <ng-icon name="bootstrapPinMap"></ng-icon> &nbsp;
         {{ launchInfo?.pad?.name }} , {{ launchInfo?.pad?.location?.name }}
       </span>
       <span class="my-2"
         >Agency : &nbsp; {{ launchInfo?.launch_service_provider?.name }}</span
       >
-      <button class="btn btn-outline-danger"><fa-icon [icon]="faVideo"></fa-icon></button>
+      <button class="btn btn-outline-danger"> <ng-icon name="bootstrapYoutube"></ng-icon></button>
     </app-simple-card>
   </div>
 </div>

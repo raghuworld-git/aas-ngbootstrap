@@ -2,17 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   NgbCalendar,
   NgbDate,
-  NgbDateParserFormatter,
-  NgbDateStruct,
-  NgbInputDatepicker,
+  NgbDateParserFormatter
 } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import {
-  faCalendar,
-  faCopyright,
-  faArrowLeft,
-  faArrowRight,
-} from '@fortawesome/free-solid-svg-icons';
 import { APOD } from '@models/apod/apod.model';
 import { PicOfDayService } from '@features/picofday/picofday.service';
 
@@ -25,15 +17,10 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
   constructor(
     private _podService: PicOfDayService,
     private _ngbCalender: NgbCalendar,
-    private _ngbformatter:NgbDateParserFormatter
-  ) {}
+    private _ngbformatter: NgbDateParserFormatter
+  ) { }
 
   private podSubscribe: Subscription | null = null;
-
-  faCalendar = faCalendar;
-  faCopyright = faCopyright;
-  faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
 
   today: NgbDate | null;
   model: NgbDate | null;
@@ -85,7 +72,7 @@ export class PicOfTheDayComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.apodResult = null;
     this.podSubscribe = this._podService.getAPOD(date).subscribe({
-      next: (data) => {        
+      next: (data) => {
         this.apodResult = data;
         if (date == null) { // If this is the first call, then date varible will be NULL so that API will fetch data for latest date available
           var currentDateFromServerFormatted = this._ngbformatter.parse(this.apodResult.date);

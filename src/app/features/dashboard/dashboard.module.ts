@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgIconsModule } from '@ng-icons/core';
+import { bootstrapArrowRight,bootstrapCalendar2Event,bootstrapCCircle } from '@ng-icons/bootstrap-icons';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '@shared/shared.module';
 
 
@@ -13,7 +13,8 @@ import { SharedModule } from '@shared/shared.module';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule,
+    NgIconsModule.withIcons({ bootstrapArrowRight,bootstrapCalendar2Event,bootstrapCCircle }),
+
     DashboardRoutingModule,
     SharedModule
   ]
