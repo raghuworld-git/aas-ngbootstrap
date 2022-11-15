@@ -3,7 +3,7 @@
   class="btn space-blue-btn btn-sm"
   style="text-decoration: none !important"
 >
-<ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
+  <ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
 >
 
 <h4 class="space-blue-font-color text-uppercase display-6 mt-3">
@@ -12,34 +12,39 @@
 
 <div class="row mt-2 mb-3">
   <div class="col d-flex flex-column align-items-center">
-    <ngb-pagination
-      [collectionSize]="totalLaunchRecords"
-      [pageSize]="perpageItemsSize"
-      [maxSize]="4"
-      aria-label="Default pagination"
-      [boundaryLinks]="true"
-      (pageChange)="onPagination($event)"
-      [(page)]="currentPage"
-    >
-    </ngb-pagination>
+    <app-pagination
+    [collectionSize]="totalLaunchRecords"      
+    [pageSize]="perpageItemsSize"
+    [boundaryLinks]="true"
+    [maxSize]="4"
+    (pageChange)="onPagination($event)"
+    [currentpage]="currentPage"
+  ></app-pagination>
   </div>
 </div>
 
 <div class="row d-flex justify-content-center">
   <ng-container *ngIf="previousLaunchesList.results.length > 0">
     <div
-      class="col-md-6 col-lg-4  col-12 mt-2 g-1"
+      class="col-md-6 col-lg-4 col-12 mt-2 g-1"
       *ngFor="let launchItem of previousLaunchesList.results"
     >
       <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
         <div class="mb-2">
-          <app-launch-status [launchStatus]="launchItem?.launchStatus?.name"  [launchStatusColor]="_launchUtilService.getLaunchStatusColor(launchItem?.launchStatus?.abbrev!)"></app-launch-status>
+          <app-launch-status
+            [launchStatus]="launchItem?.launchStatus?.name"
+            [launchStatusColor]="
+              _launchUtilService.getLaunchStatusColor(
+                launchItem?.launchStatus?.abbrev!
+              )
+            "
+          ></app-launch-status>
         </div>
         <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
           {{ launchItem?.name }}
         </span>
         <p class="small">
-          <ng-icon name="bootstrapCalendar2Event"></ng-icon>&nbsp;
+          <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
           {{ launchItem?.launchDate }}
         </p>
         <a
@@ -61,14 +66,13 @@
 </div>
 <div class="row mt-3 mb-3">
   <div class="col d-flex flex-column align-items-center">
-    <ngb-pagination
-      [collectionSize]="totalLaunchRecords"
+    <app-pagination
+      [collectionSize]="totalLaunchRecords"      
       [pageSize]="perpageItemsSize"
-      [maxSize]="4"
-      aria-label="Default pagination"
       [boundaryLinks]="true"
+      [maxSize]="4"
       (pageChange)="onPagination($event)"
-      [(page)]="currentPage"
-    ></ngb-pagination>
+      [currentpage]="currentPage"
+    ></app-pagination>
   </div>
 </div>

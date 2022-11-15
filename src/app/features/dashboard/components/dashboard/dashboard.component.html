@@ -15,16 +15,22 @@
       </div>
     </div>
 
-    <app-card customHeight="40vh" [imageTitle]="dashboardResult?.upcomingLaunch?.name" [imageURL]="dashboardResult?.upcomingLaunch?.image">
-      <!-- <div class="badge bg-danger mb-2" title="Launch Status">
-        {{ dashboardResult?.upcomingLaunch?.launchStatus?.name }}
-      </div> -->
-      <app-launch-status [launchStatusColor]="launchStatusColor" [launchStatus]="dashboardResult?.upcomingLaunch?.launchStatus?.name"></app-launch-status>
+    <app-card
+      customHeight="40vh"
+      [imageTitle]="dashboardResult?.upcomingLaunch?.name"
+      [imageURL]="dashboardResult?.upcomingLaunch?.image"
+    >
+      <div class="mb-2">
+        <app-launch-status
+          [launchStatusColor]="launchStatusColor"
+          [launchStatus]="dashboardResult?.upcomingLaunch?.launchStatus?.name"
+        ></app-launch-status>
+      </div>
       <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
         {{ dashboardResult?.upcomingLaunch?.name }}
-      </span>   
+      </span>
       <p class="card-subtitle">
-        <ng-icon name="bootstrapCalendar2Event"></ng-icon>&nbsp;
+        <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
         {{ dashboardResult?.upcomingLaunch?.launchDate }}
       </p>
       <a
@@ -32,7 +38,6 @@
         class="stretched-link"
       ></a>
     </app-card>
-
   </div>
   <div class="col-lg-6 mt-3">
     <div class="row">
@@ -50,12 +55,16 @@
       </div>
     </div>
 
-    <app-card customHeight="40vh" [imageTitle]="dashboardResult?.apod?.title" [imageURL]="dashboardResult?.apod?.url">
+    <app-card
+      customHeight="40vh"
+      [imageTitle]="dashboardResult?.apod?.title"
+      [imageURL]="dashboardResult?.apod?.url"
+    >
       <h5 class="card-title fw-bold mb-2">
         {{ dashboardResult?.apod?.title }}
       </h5>
-      <span title="CopyRight" *ngIf="dashboardResult?.apod?.copyright != null"
-        > <ng-icon name="bootstrapCCircle"></ng-icon>
+      <span title="CopyRight" *ngIf="dashboardResult?.apod?.copyright != null">
+        <ng-icon name="bootstrapCCircle"></ng-icon>
         {{ dashboardResult?.apod?.copyright }}</span
       >
       <a [routerLink]="['/picoftheday']" class="stretched-link"></a>

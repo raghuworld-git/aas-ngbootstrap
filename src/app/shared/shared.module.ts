@@ -6,6 +6,8 @@ import { SimpleModalComponent } from './components/simple-modal/simple-modal.com
 import { TextTrimDirective } from './directives/text-trim.directive';
 import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videoplayer-frame.component';
 import { LaunchStatusComponent } from './components/launch-status/launch-status.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,20 +16,20 @@ import { LaunchStatusComponent } from './components/launch-status/launch-status.
     SimpleCardComponent,
     SimpleModalComponent,
     LaunchStatusComponent,
+    PaginationComponent,
 
-    TextTrimDirective,         
+    TextTrimDirective,
   ],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule,NgbPaginationModule],
   exports: [
     VideoPlayerFrameComponent,
     CardComponent,
     SimpleCardComponent,
     SimpleModalComponent,
     LaunchStatusComponent,
+    PaginationComponent,
 
-    TextTrimDirective
-  ]
+    TextTrimDirective,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

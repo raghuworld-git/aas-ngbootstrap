@@ -3,7 +3,7 @@
   class="btn space-blue-btn btn-sm"
   style="text-decoration: none !important"
 >
-<ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
+  <ng-icon name="bootstrapArrowLeft"></ng-icon>&nbsp; Back</a
 >
 
 <h4 class="space-blue-font-color text-uppercase mt-3">
@@ -27,7 +27,7 @@
         [launchStatus]="launchInfo?.status?.name"
       ></app-launch-status>
       <span class="mt-2">
-        <ng-icon name="bootstrapCalendar2Event"></ng-icon>&nbsp;
+        <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
         {{ launchInfo?.launchDate }}
       </span>
       <span class="mt-2">
@@ -37,7 +37,9 @@
       <span class="my-2"
         >Agency : &nbsp; {{ launchInfo?.launch_service_provider?.name }}</span
       >
-      <button class="btn btn-outline-danger"> <ng-icon name="bootstrapYoutube"></ng-icon></button>
+      <a class="link-danger h3" style="cursor: pointer;"
+        ><ng-icon name="bootstrapYoutube"></ng-icon
+      ></a>
     </app-simple-card>
   </div>
 </div>
@@ -48,9 +50,7 @@
         {{ launchInfo?.isFailed ? "Failure" : "Hold" }} Reason
       </span>
       <p>
-        {{
-          launchInfo?.failHoldreason | slice: 0:150
-        }}...
+        {{ launchInfo?.failHoldreason | slice: 0:150 }}...
         <a
           href="#"
           onclick="return false;"

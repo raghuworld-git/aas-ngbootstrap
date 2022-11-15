@@ -30,6 +30,7 @@ export class PreviousLaunchesComponent implements OnInit {
     this._route.queryParamMap.subscribe((data: ParamMap) => {
       if (Number(data.get('page'))) {
         this.incomingPageChangedByUser = Number(data.get('page'));
+        this.currentPage = this.incomingPageChangedByUser + 1;
       } else {
         this.incomingPageChangedByUser = 0;
       }
@@ -46,6 +47,7 @@ export class PreviousLaunchesComponent implements OnInit {
   }
 
   onPagination(event: number) {
+    this.currentPage = event;
     this._launchService.getLaunchesUsingRouting(event, false);
   }
 

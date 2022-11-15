@@ -1,0 +1,15 @@
+<ngb-pagination
+  [collectionSize]="collectionSize"
+  [pageSize]="pageSize"
+  [maxSize]="maxSize"
+  aria-label="Default pagination"
+  [boundaryLinks]="true"
+  (pageChange)="pageChangeEvent($event)"
+  [page]="currentpage"
+  [boundaryLinks]="boundaryLinks"
+>
+  <ng-template ngbPaginationPrevious>Prev</ng-template>
+  <ng-template ngbPaginationNext>Next</ng-template>
+  <ng-template ngbPaginationFirst>First</ng-template>
+  <ng-template ngbPaginationLast>Last</ng-template>
+</ngb-pagination>
