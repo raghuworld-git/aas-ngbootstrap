@@ -1,0 +1,14 @@
+<div class="d-flex flex-column align-items-center">
+  <img
+    [src]="imgSrc"
+    style="
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      object-position: center;
+    "
+    class="rounded-circle"
+    [alt]="altName"
+  />
+  <ng-content></ng-content>
+</div>

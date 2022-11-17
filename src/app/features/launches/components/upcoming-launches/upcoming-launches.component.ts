@@ -39,12 +39,12 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
     this._launchServiceSub?.unsubscribe();
   }
 
-  onPagination(event: number) {  
+  onPagination(event: number) {
     this.currentPage = event;
-    this.getUpcomingLaunches(event, this.perpageItemsSize);
+    this.getUpcomingLaunches(event - 1, this.perpageItemsSize);
   }
 
-  isCrewed(data: any) {   
+  isCrewed(data: any) {
     // this.iscrewedCheckbox = data.target.checked;
     this.currentPage = 1;
     this.getUpcomingLaunches(
@@ -53,7 +53,7 @@ export class UpcomingLaunchesComponent implements OnInit, OnDestroy {
       data.target.checked,
       0,
       true
-    );   
+    );
   }
 
   private getUpcomingLaunches(

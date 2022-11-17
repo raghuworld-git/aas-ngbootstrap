@@ -44,7 +44,7 @@ export class PreviousLaunchesComponent implements OnInit {
 
   onPagination(event: number) {
     this.currentPage = event;    
-    this.getPreviousLaunches(event, this.perpageItemsSize);
+    this.getPreviousLaunches(event-1, this.perpageItemsSize);
   }
 
   isCrewed(data: any) {

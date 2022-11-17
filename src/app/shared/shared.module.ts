@@ -8,6 +8,7 @@ import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videop
 import { LaunchStatusComponent } from './components/launch-status/launch-status.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
     SimpleModalComponent,
     LaunchStatusComponent,
     PaginationComponent,
+    UserProfileComponent,
 
-    TextTrimDirective,
+    TextTrimDirective     
   ],
   imports: [CommonModule, NgxPaginationModule],
   exports: [
@@ -28,6 +30,7 @@ import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
     SimpleModalComponent,
     LaunchStatusComponent,
     PaginationComponent,
+    UserProfileComponent,
 
     TextTrimDirective,
 

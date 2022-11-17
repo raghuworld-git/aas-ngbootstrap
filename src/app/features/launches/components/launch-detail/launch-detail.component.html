@@ -37,7 +37,7 @@
       <span class="my-2"
         >Agency : &nbsp; {{ launchInfo?.launch_service_provider?.name }}</span
       >
-      <a class="link-danger h3" style="cursor: pointer;"
+      <a class="link-danger h3" style="cursor: pointer"
         ><ng-icon name="bootstrapYoutube"></ng-icon
       ></a>
     </app-simple-card>
@@ -93,8 +93,26 @@
     </app-simple-card>
   </div>
 </div>
-<div class="row">
-  <div class="col" *ngFor="let item of launchInfo?.astronauts">
-    {{ item.astronaut.name }} | {{ item.astronaut.launchStagesIncluded }}
+<div class="row mt-2">
+  <div class="col">
+    <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
+      <span header>
+        Astronauts
+      </span>
+      <div class="row">
+        <div class="col col-xxl-2 mb-4" *ngFor="let item of launchInfo?.astronauts">        
+          <app-user-profile
+            [imgSrc]="item.astronaut.profile_image!"
+            [altName]="item.astronaut.name"
+          >
+            <h6 class="mt-2">{{ item.astronaut.name }}</h6>
+            <span class="text-muted">
+              {{ item.role.role }} 
+            </span>
+            <span class="badge bg-primary">{{ item.astronaut.launchStagesIncluded }}</span>
+          </app-user-profile>
+        </div>
+      </div>
+    </app-simple-card>
   </div>
 </div>
