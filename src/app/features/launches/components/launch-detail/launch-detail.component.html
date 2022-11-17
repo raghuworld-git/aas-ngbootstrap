@@ -93,23 +93,26 @@
     </app-simple-card>
   </div>
 </div>
-<div class="row mt-2">
+<div class="row mt-2" *ngIf="launchInfo?.astronauts?.length! > 0">
   <div class="col">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
-      <span header>
-        Astronauts
-      </span>
+      <span header> Astronauts </span>
       <div class="row">
-        <div class="col col-xxl-2 mb-4" *ngFor="let item of launchInfo?.astronauts">        
+        <div
+          class="col col-xxl-2 mb-4"
+          *ngFor="let item of launchInfo?.astronauts"
+        >
           <app-user-profile
             [imgSrc]="item.astronaut.profile_image!"
             [altName]="item.astronaut.name"
           >
             <h6 class="mt-2">{{ item.astronaut.name }}</h6>
             <span class="text-muted">
-              {{ item.role.role }} 
+              {{ item.role.role }}
             </span>
-            <span class="badge bg-primary">{{ item.astronaut.launchStagesIncluded }}</span>
+            <span class="badge bg-primary">{{
+              item.astronaut.launchStagesIncluded
+            }}</span>
           </app-user-profile>
         </div>
       </div>
