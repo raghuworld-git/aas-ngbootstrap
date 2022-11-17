@@ -7,6 +7,7 @@ import { LaunchesRoutingModule } from './launches-routing.module';
 import { PreviousLaunchesComponent } from './components/previous-launches/previous-launches.component';
 import { SharedModule } from '@shared/shared.module';
 import { UpcomingLaunchesComponent } from './components/upcoming-launches/upcoming-launches.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -17,7 +18,8 @@ import { UpcomingLaunchesComponent } from './components/upcoming-launches/upcomi
     UpcomingLaunchesComponent
   ],
   imports: [
-    CommonModule,    
+    CommonModule,  
+    NgxPaginationModule,  
     NgIconsModule.withIcons({ bootstrapCalendar2EventFill, bootstrapArrowLeft, bootstrapPinMap, bootstrapYoutube }),
     LaunchesRoutingModule,
     SharedModule

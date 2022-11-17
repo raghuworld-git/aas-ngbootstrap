@@ -25,21 +25,17 @@ export class PreviousLaunchesComponent implements OnInit {
   totalLaunchRecords: number = 0;
   perpageItemsSize: number = 6;
   incomingPageChangedByUser: number = 0;
+  iscrewedCheckbox: boolean = false;
 
   ngOnInit(): void {
-    this._route.queryParamMap.subscribe((data: ParamMap) => {
-      if (Number(data.get('page'))) {
-        this.incomingPageChangedByUser = Number(data.get('page'));
-        this.currentPage = this.incomingPageChangedByUser + 1;
-      } else {
-        this.incomingPageChangedByUser = 0;
-      }
-      this.getPreviousLaunches(
-        this.incomingPageChangedByUser,
-        this.perpageItemsSize,
-        true
-      );
-    });
+
+    this.getPreviousLaunches(
+      this.incomingPageChangedByUser,
+      this.perpageItemsSize,
+      false,
+      0,
+      true
+    );    
   }
 
   ngOnDestroy(): void {
@@ -47,17 +43,31 @@ export class PreviousLaunchesComponent implements OnInit {
   }
 
   onPagination(event: number) {
-    this.currentPage = event;
-    this._launchService.getLaunchesUsingRouting(event, false);
+    this.currentPage = event;    
+    this.getPreviousLaunches(event, this.perpageItemsSize);
+  }
+
+  isCrewed(data: any) {
+
+    this.currentPage = 1;
+    this.getPreviousLaunches(
+      0,
+      this.perpageItemsSize,
+      data.target.checked,
+      0,
+      true
+    );     
   }
 
   private getPreviousLaunches(
     page: number,
     limit: number,
+    isCrewed: boolean = false,
+    lstatus: number = 0,
     isInitial: boolean = false
   ) {
     this._launchServiceSub = this._launchService
-      .getPreviousLaunches(page, limit)
+      .getPreviousLaunches(page, limit,isCrewed,lstatus)
       .subscribe((data) => {
         this.previousLaunchesList = data;
         if (isInitial) {

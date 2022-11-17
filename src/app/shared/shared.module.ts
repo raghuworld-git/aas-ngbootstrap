@@ -7,7 +7,7 @@ import { TextTrimDirective } from './directives/text-trim.directive';
 import { VideoPlayerFrameComponent } from './components/videoplayer-frame/videoplayer-frame.component';
 import { LaunchStatusComponent } from './components/launch-status/launch-status.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
     TextTrimDirective,
   ],
-  imports: [CommonModule,NgbPaginationModule],
+  imports: [CommonModule, NgxPaginationModule],
   exports: [
     VideoPlayerFrameComponent,
     CardComponent,
@@ -30,6 +30,8 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     PaginationComponent,
 
     TextTrimDirective,
+
+    PaginatePipe,
   ],
 })
 export class SharedModule {}

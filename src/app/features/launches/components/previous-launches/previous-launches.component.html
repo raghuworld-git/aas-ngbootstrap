@@ -10,24 +10,37 @@
   Previous Launches
 </h4>
 
-<div class="row mt-2 mb-3">
+<div class="row mt-2 mb-1">
   <div class="col d-flex flex-column align-items-center">
-    <app-pagination
-    [collectionSize]="totalLaunchRecords"      
-    [pageSize]="perpageItemsSize"
-    [boundaryLinks]="true"
-    [maxSize]="4"
-    (pageChange)="onPagination($event)"
-    [currentpage]="currentPage"
-  ></app-pagination>
+    <app-pagination id="previousPagination" [maxPageSize]="perpageItemsSize" (paginationEvent)="onPagination($event)" ></app-pagination>
   </div>
+</div>
+
+<div class="form-check form-switch">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+    id="flexSwitchCheckisCrewed"
+    (click)="isCrewed($event)"
+    [value]="iscrewedCheckbox"
+  />
+  <label class="form-check-label" for="flexSwitchCheckisCrewed"
+    >Crewed Launches</label
+  >
 </div>
 
 <div class="row d-flex justify-content-center">
   <ng-container *ngIf="previousLaunchesList.results.length > 0">
     <div
       class="col-md-6 col-lg-4 col-12 mt-2 g-1"
-      *ngFor="let launchItem of previousLaunchesList.results"
+      *ngFor="let launchItem of previousLaunchesList.results | paginate
+      : {
+          id: 'previousPagination',
+          itemsPerPage: perpageItemsSize,
+          currentPage: currentPage,
+          totalItems: totalLaunchRecords
+        }"
     >
       <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
         <div class="mb-2">
@@ -64,15 +77,8 @@
     No data availble
   </p>
 </div>
-<div class="row mt-3 mb-3">
+<div class="row mt-4 mb-4">
   <div class="col d-flex flex-column align-items-center">
-    <app-pagination
-      [collectionSize]="totalLaunchRecords"      
-      [pageSize]="perpageItemsSize"
-      [boundaryLinks]="true"
-      [maxSize]="4"
-      (pageChange)="onPagination($event)"
-      [currentpage]="currentPage"
-    ></app-pagination>
+    <app-pagination id="previousPagination" [maxPageSize]="perpageItemsSize" (paginationEvent)="onPagination($event)" ></app-pagination>
   </div>
 </div>

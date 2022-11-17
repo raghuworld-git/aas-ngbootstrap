@@ -3,18 +3,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
+  styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent {
-  @Output() pageChange = new EventEmitter<number>();
 
-  @Input() currentpage: number = 1;
-  @Input() collectionSize: number;
-  @Input() pageSize: number;
-  @Input() boundaryLinks: boolean = false;
-  @Input() maxSize: number;
+  @Input() id:string;
+  @Input() maxPageSize:number;
+  @Output() paginationEvent = new EventEmitter<number>();
 
-  pageChangeEvent(page: number) {
-    this.pageChange.emit(page);
+  onPagination(event:number){
+    this.paginationEvent.emit(event);
   }
+
 }

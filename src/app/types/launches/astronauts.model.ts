@@ -3,7 +3,8 @@ export interface Astronaut {
          astronaut : {
                 id:number,
                 name:string,
-                profile_image:string | null
+                profile_image:string | null,
+                launchStagesIncluded:string
         },
          crewGroup?:string[],
 }

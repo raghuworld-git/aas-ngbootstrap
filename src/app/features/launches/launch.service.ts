@@ -10,7 +10,10 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class LaunchService {
-  constructor(private _httpService: CustomHttpService,private _router:Router) { }
+  constructor(
+    private _httpService: CustomHttpService,
+    private _router: Router
+  ) {}
 
   private noDataAvailable: string = 'No Data available';
   private launchBaseURL: string = 'Launches';
@@ -21,61 +24,87 @@ export class LaunchService {
   private getPreviouslaunchsURL: string = `${this.launchBaseURL}/GetPreviousLaunches`;
 
   getLaunchInfo(slug: string): Observable<LaunchDetail> {
-    return this._httpService.get<LaunchDetail>(
-      `${this.getlaunchBySlugURL}/${slug}`
-    ).pipe(map(data => {
-      if (!this.hasData(data.rocket?.configuration?.description)) {
-        data.rocket.configuration.description = this.noDataAvailable;
-      }
-      if (!this.hasData(data.mission?.description)) {
-        data.mission.description = this.noDataAvailable;
-      }     
-      if(['partial failure','failure'].includes(data.status.abbrev.toLowerCase())){
-        data.isFailed = true;
-        data.failHoldreason = data.failreason;
-      }
-      if(data.status.abbrev.toLowerCase()=='hold'){
-        data.isHold = true;
-        data.failHoldreason = data.holdreason;
-      }
-       
-      if (!this.hasData(data.failHoldreason)) {
-        data.failHoldreason = this.noDataAvailable;
-      }
-      return data;
-    }));
+    return this._httpService
+      .get<LaunchDetail>(`${this.getlaunchBySlugURL}/${slug}`)
+      .pipe(
+        map((data) => {
+          if (!this.hasData(data.rocket?.configuration?.description)) {
+            data.rocket.configuration.description = this.noDataAvailable;
+          }
+          if (!this.hasData(data.mission?.description)) {
+            data.mission.description = this.noDataAvailable;
+          }
+          if (
+            ['partial failure', 'failure'].includes(
+              data.status.abbrev.toLowerCase()
+            )
+          ) {
+            data.isFailed = true;
+            data.failHoldreason = data.failreason;
+          }
+          if (data.status.abbrev.toLowerCase() == 'hold') {
+            data.isHold = true;
+            data.failHoldreason = data.holdreason;
+          }
+
+          if (!this.hasData(data.failHoldreason)) {
+            data.failHoldreason = this.noDataAvailable;
+          }
+          return data;
+        })
+      );
   }
 
   getUpcomingLaunches(
     page: number,
-    limit: number
+    limit: number,
+    isCrewed: boolean = false,
+    lStatus: number = 0
   ): Observable<lldevResult<SimpleLaunch>> {
-    return this._httpService.get<lldevResult<SimpleLaunch>>(
-      `${this.getUpcominglaunchsURL}/${page}/${limit}`
-    );
+    let url: string = `${this.getUpcominglaunchsURL}/${page}/${limit}`;
+
+    url = `${url}/${isCrewed}`;
+
+    if (lStatus > 0) {
+      url = `${url}/${lStatus}`;
+    }
+
+    return this._httpService.get<lldevResult<SimpleLaunch>>(url);
   }
 
-  getLaunchesUsingRouting(page: number, isUpcoming: boolean = true) {
-    if(isUpcoming){
-      this._router.navigate(['/launches/upcoming'],{queryParams:{page:page-1}});
-    }    
-    else{
-      this._router.navigate(['/launches/previous'],{queryParams:{page:page-1}});
+  getLaunchesUsingRouting(
+    page: number,
+    isUpcoming: boolean = true,
+    isCrewed: boolean = false
+  ) {
+    if (isUpcoming) {
+      this._router.navigate(['/launches/upcoming'], {
+        queryParams: { page: page - 1 },
+      });
+    } else {
+      this._router.navigate(['/launches/previous'], {
+        queryParams: { page: page - 1 },
+      });
     }
   }
 
   getPreviousLaunches(
     page: number,
-    limit: number
+    limit: number,
+    isCrewed: boolean = false,
+    lStatus: number = 0
   ): Observable<lldevResult<SimpleLaunch>> {
-    return this._httpService.get<lldevResult<SimpleLaunch>>(
-      `${this.getPreviouslaunchsURL}/${page}/${limit}`
-    );
+    let url: string = `${this.getUpcominglaunchsURL}/${page}/${limit}`;
+    url = `${url}/${isCrewed}`;
+
+    if (lStatus > 0) {
+      url = `${url}/${lStatus}`;
+    }
+    return this._httpService.get<lldevResult<SimpleLaunch>>(url);
   }
 
-
   private hasData(data: any): boolean {
-    if (data == undefined || data == null || data == "") {
+    if (data == undefined || data == null || data == '') {
       return false;
     }
     return true;
