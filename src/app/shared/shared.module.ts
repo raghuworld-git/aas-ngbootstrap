@@ -10,6 +10,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { CardsListPlaceholderComponent } from './components/cards-list-placeholder/cards-list-placeholder.component';
+import { ModalWithYoutubelinkComponent } from './components/modal-with-youtubelink/modal-with-youtubelink.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { CardsListPlaceholderComponent } from './components/cards-list-placehold
     PaginationComponent,
     UserProfileComponent,
     CardsListPlaceholderComponent,
+    ModalWithYoutubelinkComponent,
+
     TextTrimDirective,
   ],
   imports: [CommonModule, NgxPaginationModule],
@@ -33,6 +36,7 @@ import { CardsListPlaceholderComponent } from './components/cards-list-placehold
     PaginationComponent,
     UserProfileComponent,
     CardsListPlaceholderComponent,
+    ModalWithYoutubelinkComponent,
 
     TextTrimDirective,
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,12 +6,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './simple-modal.component.html',
   styleUrls: ['./simple-modal.component.scss']
 })
-export class SimpleModalComponent implements OnInit {
+export class SimpleModalComponent {
 
   constructor(public activeModal:NgbActiveModal) { }
 
   @Input() text:string;  
-  ngOnInit(): void {
-  }
-
+ 
 }

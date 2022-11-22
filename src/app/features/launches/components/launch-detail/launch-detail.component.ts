@@ -13,6 +13,7 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SimpleModalComponent } from '@shared/components/simple-modal/simple-modal.component';
 import { LaunchUtilService } from '@shared/services/launch-Util.service';
+import { ModalWithYoutubelinkComponent } from '@shared/components/modal-with-youtubelink/modal-with-youtubelink.component';
 
 @Component({
   selector: 'app-launch-detail',
@@ -36,8 +37,6 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
   faCalendarDay = faCalendarDay;
   faVideo = faVideo;
   faVideoSlash = faVideoSlash;
-
-  
 
   launchStatusColor: string;
 
@@ -68,5 +67,14 @@ export class LaunchDetailComponent implements OnInit, OnDestroy {
       centered: true,
     });
     modalRef.componentInstance.text = text;
+  }
+
+  openYoutube(text: string | undefined) {
+    const modalRef = this.modalService.open(ModalWithYoutubelinkComponent, {
+      scrollable: true,
+      centered: true,
+      size: 'xl',
+    });
+    modalRef.componentInstance.url = text;
   }
 }

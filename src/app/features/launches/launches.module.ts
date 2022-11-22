@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapCalendar2EventFill, bootstrapArrowLeft, bootstrapPinMap, bootstrapYoutube } from '@ng-icons/bootstrap-icons'
+import { bootstrapCalendar2EventFill, bootstrapPinMap, bootstrapYoutube } from '@ng-icons/bootstrap-icons'
 import { LaunchDetailComponent } from './components/launch-detail/launch-detail.component';
 import { LaunchesRoutingModule } from './launches-routing.module';
 import { PreviousLaunchesComponent } from './components/previous-launches/previous-launches.component';
@@ -20,7 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,  
     NgxPaginationModule,  
-    NgIconsModule.withIcons({ bootstrapCalendar2EventFill, bootstrapArrowLeft, bootstrapPinMap, bootstrapYoutube }),
+    NgIconsModule.withIcons({ bootstrapCalendar2EventFill, bootstrapPinMap, bootstrapYoutube }),
     LaunchesRoutingModule,
     SharedModule
   ]
