@@ -9,6 +9,7 @@ import { LaunchStatusComponent } from './components/launch-status/launch-status.
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CardsListPlaceholderComponent } from './components/cards-list-placeholder/cards-list-placeholder.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     LaunchStatusComponent,
     PaginationComponent,
     UserProfileComponent,
-
-    TextTrimDirective     
+    CardsListPlaceholderComponent,
+    TextTrimDirective,
   ],
   imports: [CommonModule, NgxPaginationModule],
   exports: [
@@ -31,6 +32,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     LaunchStatusComponent,
     PaginationComponent,
     UserProfileComponent,
+    CardsListPlaceholderComponent,
 
     TextTrimDirective,
 

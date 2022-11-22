@@ -11,8 +11,12 @@
 </h4>
 
 <div class="row mt-4 mb-2">
-  <div class="col d-flex flex-column align-items-center">   
-    <app-pagination id="upcomingPagination" [maxPageSize]="perpageItemsSize" (paginationEvent)="onPagination($event)" ></app-pagination>
+  <div class="col d-flex flex-column align-items-center">
+    <app-pagination
+      id="upcomingPagination"
+      [maxPageSize]="perpageItemsSize"
+      (paginationEvent)="onPagination($event)"
+    ></app-pagination>
   </div>
 </div>
 
@@ -29,59 +33,68 @@
   >
 </div>
 
-<div class="row d-flex justify-content-center">
-  <ng-container *ngIf="upcomingLaunchesList.results.length > 0">
-    <div
-      class="col-md-6 col-lg-4 col-12 mt-2 g-1"
-      *ngFor="
-        let launchItem of upcomingLaunchesList.results
-          | paginate
-            : {
-                id: 'upcomingPagination',
-                itemsPerPage: perpageItemsSize,
-                currentPage: currentPage,
-                totalItems: totalLaunchRecords
-              }
+<app-cards-list-placeholder [isLoading]="upcomingLaunchesList.count">
+  <div class="row d-flex justify-content-center">
+    <ng-container *ngIf="upcomingLaunchesList.results.length > 0">
+      <div
+        class="col-md-6 col-lg-4 col-12 mt-2 g-1"
+        *ngFor="
+          let launchItem of upcomingLaunchesList.results
+            | paginate
+              : {
+                  id: 'upcomingPagination',
+                  itemsPerPage: perpageItemsSize,
+                  currentPage: currentPage,
+                  totalItems: totalLaunchRecords
+                }
+        "
+      >
+        <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
+          <div class="mb-2">
+            <app-launch-status
+              [launchStatus]="launchItem?.launchStatus?.name"
+              [launchStatusColor]="
+                _launchUtilService.getLaunchStatusColor(
+                  launchItem?.launchStatus?.abbrev!
+                )
+              "
+            ></app-launch-status>
+          </div>
+          <span
+            class="h6 d-inline-block text-truncate"
+            style="max-width: 300px"
+          >
+            {{ launchItem?.name }}
+          </span>
+          <p class="small">
+            <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
+            {{ launchItem?.launchDate }}
+          </p>
+          <a
+            [routerLink]="['/launches', launchItem?.slug]"
+            class="stretched-link"
+          ></a>
+        </app-card>
+      </div>
+    </ng-container>
+    <p
+      class="space-blue-font-color text-center"
+      *ngIf="
+        upcomingLaunchesList.results.length == 0 &&
+        upcomingLaunchesList.count >= 0
       "
     >
-      <app-card [imageTitle]="launchItem.name" [imageURL]="launchItem.image">
-        <div class="mb-2">
-          <app-launch-status
-            [launchStatus]="launchItem?.launchStatus?.name"
-            [launchStatusColor]="
-              _launchUtilService.getLaunchStatusColor(
-                launchItem?.launchStatus?.abbrev!
-              )
-            "
-          ></app-launch-status>
-        </div>
-        <span class="h6 d-inline-block text-truncate" style="max-width: 300px">
-          {{ launchItem?.name }}
-        </span>
-        <p class="small">
-          <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
-          {{ launchItem?.launchDate }}
-        </p>
-        <a
-          [routerLink]="['/launches', launchItem?.slug]"
-          class="stretched-link"
-        ></a>
-      </app-card>
-    </div>
-  </ng-container>
-  <p
-    class="space-blue-font-color text-center"
-    *ngIf="
-      upcomingLaunchesList.results.length == 0 &&
-      upcomingLaunchesList.count >= 0
-    "
-  >
-    No data availble
-  </p>
-</div>
+      No data availble
+    </p>
+  </div>
+</app-cards-list-placeholder>
 
 <div class="row mt-4 mb-5">
   <div class="col d-flex flex-column align-items-center">
-    <app-pagination id="upcomingPagination" [maxPageSize]="perpageItemsSize" (paginationEvent)="onPagination($event)" ></app-pagination>
+    <app-pagination
+      id="upcomingPagination"
+      [maxPageSize]="perpageItemsSize"
+      (paginationEvent)="onPagination($event)"
+    ></app-pagination>
   </div>
 </div>

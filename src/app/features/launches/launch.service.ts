@@ -94,7 +94,7 @@ export class LaunchService {
     isCrewed: boolean = false,
     lStatus: number = 0
   ): Observable<lldevResult<SimpleLaunch>> {
-    let url: string = `${this.getUpcominglaunchsURL}/${page}/${limit}`;
+    let url: string = `${this.getPreviouslaunchsURL}/${page}/${limit}`;
     url = `${url}/${isCrewed}`;
 
     if (lStatus > 0) {

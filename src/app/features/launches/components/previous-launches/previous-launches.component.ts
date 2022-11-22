@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { LaunchService } from '@features/launches/launch.service';
 import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
@@ -14,8 +13,7 @@ import { Subscription } from 'rxjs';
 export class PreviousLaunchesComponent implements OnInit {
   constructor(
     public _launchService: LaunchService,
-    public _launchUtilService: LaunchUtilService,
-    private _route: ActivatedRoute
+    public _launchUtilService: LaunchUtilService
   ) {}
 
   private _launchServiceSub: Subscription | null;
