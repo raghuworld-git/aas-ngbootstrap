@@ -3,9 +3,7 @@ import { CustomHttpService } from "@core/services/customHttp.service";
 import { dashboard } from "@models/dashboard/dashboard.model";
 import { Observable } from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DashboardService {
 
   constructor(private _httpService: CustomHttpService) { }

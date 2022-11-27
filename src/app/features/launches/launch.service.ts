@@ -6,9 +6,7 @@ import { SimpleLaunch } from '@models/launches/SimpleLaunch.model';
 import { lldevResult } from '@models/lldevResult.model';
 import { Observable, map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class LaunchService {
   constructor(
     private _httpService: CustomHttpService,

@@ -8,6 +8,7 @@ import { bootstrapCalendar2EventFill, bootstrapArrowLeft, bootstrapArrowRight, b
 import { PicofdayRoutingModule } from './picofday-routing.module';
 import { PicOfTheDayComponent } from './components/pic-of-the-day/pic-of-the-day.component';
 import { SharedModule } from '@shared/shared.module';
+import { PicOfDayService } from './picofday.service';
 
 
 
@@ -21,6 +22,7 @@ import { SharedModule } from '@shared/shared.module';
     NgIconsModule.withIcons({ bootstrapCalendar2EventFill, bootstrapArrowLeft, bootstrapArrowRight, bootstrapCCircle }),
     PicofdayRoutingModule,
     SharedModule
-  ]
+  ],
+  providers:[PicOfDayService]
 })
 export class PicofdayModule { }

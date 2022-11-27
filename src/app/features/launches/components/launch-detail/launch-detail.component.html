@@ -19,8 +19,8 @@
       ></app-launch-status>
       <div class="row mt-3">
         <div class="col">
-          <table class="table">
-            <tbody class="text-start">
+          <table class="table table-borderless">
+            <tbody class="text-center">
               <tr>
                 <td>
                   <div class="me-auto" title="Launch date">
@@ -44,11 +44,16 @@
               <tr>
                 <td>
                   <div
-                    class="me-auto d-flex flex-row align-items-end"
-                    [title]="launchInfo?.launch_service_provider?.name"
+                    class="me-auto d-flex flex-row justify-content-center"                    
                   >
-                    <span class="me-3">Agency </span>
+                    <ng-template #agencyToolTip
+                      >Agency :
+                      {{
+                        launchInfo?.launch_service_provider?.name
+                      }}</ng-template
+                    >
                     <img
+                      [ngbTooltip]="agencyToolTip"
                       [src]="launchInfo?.launch_service_provider?.logo_url"
                       style="height: 50px; max-width: 250px"
                     />
@@ -59,37 +64,18 @@
                 <td>
                   <div class="me-auto d-flex flex-row justify-content-center">
                     <a
-                      
                       class="link-danger h3 disable"
-                      style="cursor: pointer"                           
-                      (click)="openYoutube(launchInfo?.vidURLCustom!)"           
+                      style="cursor: pointer"
+                      (click)="openYoutube(launchInfo?.vidURLCustom!)"
                       ><ng-icon name="bootstrapYoutube"></ng-icon
-                    ></a>                  
+                    ></a>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-      <!-- <app-launch-status
-        [launchStatusColor]="launchStatusColor"
-        [launchStatus]="launchInfo?.status?.name"
-      ></app-launch-status>
-      <span class="mt-2">
-        <ng-icon name="bootstrapCalendar2EventFill"></ng-icon>&nbsp;
-        {{ launchInfo?.launchDate }}
-      </span>
-      <span class="mt-2">
-        <ng-icon name="bootstrapPinMap"></ng-icon> &nbsp;
-        {{ launchInfo?.pad?.name }} , {{ launchInfo?.pad?.location?.name }}
-      </span>
-      <span class="my-2"
-        >Agency : &nbsp; {{ launchInfo?.launch_service_provider?.name }}</span
-      >
-      <a class="link-danger h3" style="cursor: pointer"
-        ><ng-icon name="bootstrapYoutube"></ng-icon
-      ></a> -->
+      </div>     
     </app-simple-card>
   </div>
 </div>

@@ -9,9 +9,7 @@ import {
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PicOfDayService {
   constructor(
     private _httpService: CustomHttpService
