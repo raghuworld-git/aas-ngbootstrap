@@ -168,6 +168,12 @@
       <div class="overflow-auto" style="max-height: 30vh">
         <ul class="list-group list-group-flush">
           <li
+            class="list-group-item text-center"
+            *ngIf="launchInfo?.updates?.length! <= 0"
+          >
+            No updates yet. Keep watching this space.
+          </li>
+          <li
             class="list-group-item justify-content-start align-items-center"
             *ngFor="let update of launchInfo?.updates"
           >
