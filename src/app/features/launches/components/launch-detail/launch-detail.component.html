@@ -2,17 +2,17 @@
   {{ launchInfo?.name }}
 </h4>
 
-<div class="row">
-  <div class="col-lg-6 mt-2">
+<div class="row gx-0">
+  <div class="col-lg-7">
     <app-card
       [imageTitle]="launchInfo?.name"
       [imageURL]="launchInfo?.image"
-      [customHeight]="'50vh'"
+      [customHeight]="'45vh'"
     ></app-card>
   </div>
-  <div class="col-lg-6 mt-2">
-    <app-simple-card [customHeight]="'50vh'" [wantFlex]="true">
-      <p class="h4">T- 00 d : 18 h : 13 m: 02 s</p>
+  <div class="col-lg-5">
+    <app-simple-card [customHeight]="'45vh'" [wantFlex]="true">
+      <p class="h2">T- 00 d : 18 h : 13 m: 02 s</p>
       <app-launch-status
         [launchStatusColor]="launchStatusColor"
         [launchStatus]="launchInfo?.status?.name"
@@ -42,22 +42,8 @@
                 </td>
               </tr>
               <tr>
-                <td>
-                  <div
-                    class="me-auto d-flex flex-row justify-content-center"                    
-                  >
-                    <ng-template #agencyToolTip
-                      >Agency :
-                      {{
-                        launchInfo?.launch_service_provider?.name
-                      }}</ng-template
-                    >
-                    <img
-                      [ngbTooltip]="agencyToolTip"
-                      [src]="launchInfo?.launch_service_provider?.logo_url"
-                      style="height: 50px; max-width: 250px"
-                    />
-                  </div>
+                <td title="Agency">
+                  {{ launchInfo?.launch_service_provider?.name }}
                 </td>
               </tr>
               <tr *ngIf="launchInfo?.vidURLs?.length! > 0">
@@ -75,11 +61,12 @@
             </tbody>
           </table>
         </div>
-      </div>     
+      </div>
     </app-simple-card>
   </div>
 </div>
-<div class="row" *ngIf="launchInfo?.isFailed || launchInfo?.isHold">
+
+<div class="row gx-2" *ngIf="launchInfo?.isFailed || launchInfo?.isHold">
   <div class="col mt-2">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
       <span header>
@@ -97,7 +84,8 @@
     </app-simple-card>
   </div>
 </div>
-<div class="row">
+
+<div class="row gx-2">
   <div class="col-lg-6 mt-2">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
       <span header> Mission : {{ launchInfo?.mission?.name }} </span>
@@ -129,6 +117,7 @@
     </app-simple-card>
   </div>
 </div>
+
 <div class="row mt-2" *ngIf="launchInfo?.astronauts?.length! > 0">
   <div class="col">
     <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
@@ -138,7 +127,23 @@
           class="col col-xxl-2 mb-4"
           *ngFor="let item of launchInfo?.astronauts"
         >
+          <ng-template #astroLittleInfo>
+            <div class="d-flex flex-column">
+              <section>
+                <b>Status : </b> {{ item.astronaut.status.name }}
+              </section>
+              <section>
+                <b>Nationality : </b> {{ item.astronaut.nationality }}
+              </section>
+              <a target="_blank" class="btn btn-sm text-center" href="#"
+                ><ng-icon name="bootstrapBoxArrowUpRight"></ng-icon> More
+              </a>
+            </div>
+          </ng-template>
           <app-user-profile
+            style="cursor: pointer"
+            [ngbPopover]="astroLittleInfo"
+            [autoClose]="'outside'"
             [imgSrc]="item.astronaut.profile_image!"
             [altName]="item.astronaut.name"
           >
@@ -151,6 +156,58 @@
             }}</span>
           </app-user-profile>
         </div>
+      </div>
+    </app-simple-card>
+  </div>
+</div>
+
+<div class="row mt-2 gx-2">
+  <div class="col-12 col-lg-6">
+    <app-simple-card [customHeight]="'auto'" [wantHeader]="true">
+      <span header> Launch updates </span>
+      <div class="overflow-auto" style="max-height: 30vh">
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item justify-content-start align-items-center"
+            *ngFor="let update of launchInfo?.updates"
+          >
+            <div class="d-flex flex-start mt-4">
+              <a class="me-3" href="#">
+                <img
+                  class="rounded-circle shadow-1-strong"
+                  [src]="update.profile_image"
+                  alt="avatar"
+                  width="65"
+                  height="65"
+                />
+              </a>
+              <div class="flex-grow-1 flex-shrink-1">
+                <div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="mb-1">
+                      {{ update.created_by }}
+                      <span class="small"
+                        >- {{ update.created_on | date: "short" }}</span
+                      >
+                      -
+                      <a
+                        class="btn btn-sm"
+                        [href]="update.info_url"
+                        target="_blank"
+                        ><ng-icon name="bootstrapBoxArrowUpRight"></ng-icon
+                      ></a>
+                    </p>
+                  </div>
+                  <p class="small mb-0 text-start">
+                    {{ update.comment }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </app-simple-card>
   </div>
