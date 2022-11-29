@@ -188,10 +188,6 @@
                   >
                     <p class="mb-1">
                       {{ update.created_by }}
-                      <span class="small"
-                        >- {{ update.created_on | date: "short" }}</span
-                      >
-                      -
                       <a
                         class="btn btn-sm"
                         [href]="update.info_url"
@@ -200,6 +196,9 @@
                       ></a>
                     </p>
                   </div>
+                  <p class="small text-muted mb-1 text-start">
+                    {{ update.created_on | date: "short" }}
+                  </p>
                   <p class="small mb-0 text-start">
                     {{ update.comment }}
                   </p>
