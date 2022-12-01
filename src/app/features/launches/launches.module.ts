@@ -7,6 +7,8 @@ import {
   bootstrapPinMap,
   bootstrapYoutube,
   bootstrapBoxArrowUpRight,
+  bootstrapPencilSquare,
+  bootstrapInfoCircleFill
 } from '@ng-icons/bootstrap-icons';
 import { LaunchDetailComponent } from './components/launch-detail/launch-detail.component';
 import { LaunchesRoutingModule } from './launches-routing.module';
@@ -31,6 +33,8 @@ import { LaunchService } from './launch.service';
       bootstrapPinMap,
       bootstrapYoutube,
       bootstrapBoxArrowUpRight,
+      bootstrapPencilSquare,
+      bootstrapInfoCircleFill
     }),
     LaunchesRoutingModule,
     SharedModule,

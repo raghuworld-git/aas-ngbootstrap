@@ -136,7 +136,7 @@
                 <b>Nationality : </b> {{ item.astronaut.nationality }}
               </section>
               <a target="_blank" class="btn btn-sm text-center" href="#"
-                ><ng-icon name="bootstrapBoxArrowUpRight"></ng-icon> More
+                ><ng-icon name="bootstrapInfoCircleFill"></ng-icon>
               </a>
             </div>
           </ng-template>
@@ -203,7 +203,7 @@
                     </p>
                   </div>
                   <p class="small text-muted mb-1 text-start">
-                    {{ update.created_on | date: "short" }}
+                  <ng-icon name="bootstrapPencilSquare"></ng-icon> &nbsp;  {{ update.created_on | date: "short" }}
                   </p>
                   <p class="small mb-0 text-start">
                     {{ update.comment }}
